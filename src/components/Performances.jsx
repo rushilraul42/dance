@@ -15,14 +15,14 @@ const Performances = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#111A19] to-[#284139]/20">
+    <section style={{ background: '#4A7766', color: '#ECE7E2' }} className="py-20">
       <div className="max-w-6xl mx-auto px-4">
         {/* Performances Header */}
         <div className="text-center mb-16 fade-in">
-          <div className="text-5xl mb-4 text-[#BB6830] bounce-animation">▶️</div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F8D794] mb-4 highlight">Performances</h2>
-          <p className="text-xl text-[#809076] mb-6 leading-relaxed">Watch our talented instructor in action</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#BB6830] to-[#284139] mx-auto rounded-full"></div>
+          <div className="text-5xl mb-4 text-[#4A7766] bounce-animation">▶️</div>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#4A7766] mb-4 highlight">Performances</h2>
+          <p className="text-xl text-[#4A7766] mb-6 leading-relaxed">Watch our talented instructor in action</p>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#4A7766] to-[#C59C79] mx-auto rounded-full"></div>
         </div>
 
         {/* Performance Videos */}

@@ -10,6 +10,7 @@ const images = [
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
+  const [showFullDesc, setShowFullDesc] = useState(false);
   const timeoutRef = useRef(null);
 
   // Auto-advance carousel every 3 seconds
@@ -24,12 +25,12 @@ const Hero = () => {
   const nextSlide = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 bg-gradient-to-br from-[#284139] to-[#111A19] fade-in">
-      {/* Carousel: full screen on mobile, centered on desktop */}
-      <div className="relative w-full h-[60vh] sm:h-[80vh] md:h-[90vh] max-h-[800px] flex items-center justify-center overflow-hidden bg-[#111A19] shadow-2xl">
+    <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 bg-gradient-to-br from-[#4A7766] to-[#ECE7E2] fade-in">
+      {/* Carousel: take more space on mobile, nearly full screen */}
+      <div className="relative w-full h-[92vh] sm:h-[80vh] md:h-[90vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
         <button
           onClick={prevSlide}
-          className="hidden sm:block absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-[#F8D794]/90 hover:bg-[#BB6830] hover:text-[#F8D794] text-[#284139] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover-lift"
+          className="hidden sm:block absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-[#4A7766]/90 hover:bg-[#C59C79] hover:text-[#4A7766] text-[#ECE7E2] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover-lift"
           aria-label="Previous image"
         >
           <span className="text-xl font-bold">&#8592;</span>
@@ -37,7 +38,7 @@ const Hero = () => {
         <img
           src={images[current]}
           alt={`Performance ${current + 1}`}
-          className="w-full h-full object-contain md:object-contain bg-[#111A19] select-none transition-all duration-700 ease-in-out scale-in"
+          className="w-full h-full object-cover md:object-contain bg-[#ECE7E2] select-none transition-all duration-700 ease-in-out scale-in"
           style={{
             maxHeight: '100%',
             minHeight: '320px',
@@ -47,7 +48,7 @@ const Hero = () => {
         />
         <button
           onClick={nextSlide}
-          className="hidden sm:block absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-[#F8D794]/90 hover:bg-[#BB6830] hover:text-[#F8D794] text-[#284139] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover-lift"
+          className="hidden sm:block absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-[#4A7766]/90 hover:bg-[#C59C79] hover:text-[#4A7766] text-[#ECE7E2] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover-lift"
           aria-label="Next image"
         >
           <span className="text-xl font-bold">&#8594;</span>
@@ -60,8 +61,8 @@ const Hero = () => {
               onClick={() => setCurrent(idx)}
               className={`w-4 h-4 rounded-full transition-all duration-300 hover:scale-125 ${
                 current === idx 
-                  ? 'bg-[#BB6830] shadow-lg scale-110' 
-                  : 'bg-[#F8D794]/60 hover:bg-[#F8D794]'
+                  ? 'bg-[#C59C79] shadow-lg scale-110' 
+                  : 'bg-[#4A7766]/60 hover:bg-[#4A7766]'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
@@ -70,15 +71,30 @@ const Hero = () => {
       </div>
       
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center bg-gradient-to-br from-[#284139]/90 to-[#111A19]/90 backdrop-blur rounded-t-2xl p-8 md:p-12 shadow-2xl mt-24 sm:mt-8 -translate-y-8 sm:translate-y-0 border border-[#809076]/20 slide-in-left">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#F8D794] mb-4 text-center highlight text-reveal">Elena Martinez</h1>
-        <p className="text-lg md:text-xl text-[#809076] mb-8 text-center leading-relaxed fade-in" style={{animationDelay: '0.3s'}}>
-          Anushkaa Ramanatan is a Bharatanatyam practitioner and performer bringing classical dance to life with passion and precision.
+      <div className="w-full max-w-xl mx-auto flex flex-col items-center bg-gradient-to-br from-[#4A7766]/90 to-[#ECE7E2]/90 backdrop-blur rounded-t-2xl p-8 md:p-12 shadow-2xl mt-24 sm:mt-8 -translate-y-8 sm:translate-y-0 border border-[#4A7766]/20 slide-in-left">
+        <h1 className="text-4xl md:text-5xl font-bold text-[#4A7766] mb-4 text-center highlight text-reveal">Anushkaa Ramanatan</h1>
+        <p className="text-lg md:text-xl text-[#4A7766] mb-8 text-center leading-relaxed fade-in" style={{animationDelay: '0.3s'}}>
+          {showFullDesc ? (
+            <>
+              Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
+              Anushkaa has been a part of various Nalanda productions and has performed extensively as a part of the Nalanda Troupe, gaining much experience and exposure. She served as the President of the Student Council Committee at her alma mater, a role that helped her develop skills across diverse areas of work. <br/><br/>
+              Three years ago, Anushkaa founded 'Abhinita School of Dance' that provides authentic and traditional training in Bharatanatyam. <br/><br/>
+              Anushkaa currently works as an independent performer and with actively nurturing and expanding her dance class.
+            </>
+          ) : (
+            <>
+              Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
+              <button onClick={() => setShowFullDesc(true)} className="text-[#4A7766] underline font-semibold ml-1">Read more</button>
+            </>
+          )}
         </p>
+        {showFullDesc && (
+          <button onClick={() => setShowFullDesc(false)} className="text-[#4A7766] underline font-semibold mb-4">Show less</button>
+        )}
         <a
           href="/ArtisteBiography.pdf"
           download
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#BB6830] to-[#284139] hover:from-[#284139] hover:to-[#BB6830] text-[#F8D794] font-bold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl btn-primary scale-in"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#C59C79] to-[#4A7766] hover:from-[#4A7766] hover:to-[#C59C79] text-[#ECE7E2] font-bold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl btn-primary scale-in"
           style={{animationDelay: '0.5s'}}
         >
           <span className="text-xl">📄</span>

@@ -1,15 +1,15 @@
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-[#284139] to-[#111A19] text-[#F8D794] pt-16 pb-6">
+    <footer style={{ background: '#4A7766', color: '#ECE7E2' }}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col gap-12">
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="flex flex-col gap-6 slide-in-left">
+            <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3 text-3xl font-bold">
-                <span className="text-[#BB6830] bounce-animation">🎵</span>
-                <span className="highlight">DanceStudio</span>
+                <span style={{ color: '#ECE7E2' }}>3b5</span>
+                <span className="highlight" style={{ color: '#ECE7E2' }}>DanceStudio</span>
               </div>
-              <p className="text-[#809076] text-lg leading-relaxed">
+              <p style={{ color: '#ECE7E2' }} className="text-lg leading-relaxed">
                 Inspiring dancers of all levels to express themselves through the beautiful art of movement.
                 Join our community and discover the transformative power of dance.
               </p>
@@ -56,7 +56,7 @@ const Footer = () => {
             </div>
             <div className="grid grid-cols-2 gap-12">
               <div className="slide-in-right">
-                <h4 className="text-xl font-bold mb-6 text-[#F8D794]">Quick Links</h4>
+                <h4 className="text-xl font-bold mb-6 text-[#ECE7E2]">Quick Links</h4>
                 <ul className="flex flex-col gap-3">
                   {[
                     { name: 'Home', href: '#' },
@@ -68,7 +68,7 @@ const Footer = () => {
                     <li key={index} className="stagger-item" style={{animationDelay: `${index * 0.1}s`}}>
                       <a 
                         href={link.href} 
-                        className="text-[#809076] hover:text-[#BB6830] transition-all duration-300 hover:translate-x-2 inline-block text-lg"
+                        className="text-[#ECE7E2] hover:text-[#C59C79] transition-all duration-300 hover:translate-x-2 inline-block text-lg"
                       >
                         {link.name}
                       </a>
@@ -77,8 +77,8 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="slide-in-right" style={{animationDelay: '0.2s'}}>
-                <h4 className="text-xl font-bold mb-6 text-[#F8D794]">Studio Hours</h4>
-                <ul className="flex flex-col gap-3 text-[#809076] text-lg">
+                <h4 className="text-xl font-bold mb-6 text-[#ECE7E2]">Studio Hours</h4>
+                <ul className="flex flex-col gap-3 text-[#ECE7E2] text-lg">
                   {[
                     'Monday - Friday: 10:00 AM - 8:00 PM',
                     'Saturday: 9:00 AM - 6:00 PM',
@@ -86,7 +86,7 @@ const Footer = () => {
                   ].map((hour, index) => (
                     <li 
                       key={index}
-                      className="stagger-item hover:text-[#F8D794] transition-colors duration-300"
+                      className="stagger-item hover:text-[#C59C79] transition-colors duration-300"
                       style={{animationDelay: `${index * 0.1}s`}}
                     >
                       {hour}
@@ -97,9 +97,9 @@ const Footer = () => {
             </div>
           </div>
           
-          <div className="border-t-2 border-[#809076]/20 pt-8 text-center fade-in">
-            <p className="text-[#809076] text-lg">
-              © 2024 <span className="text-[#BB6830] font-semibold">DanceStudio</span>. All rights reserved. 
+          <div className="border-t-2 border-[#ECE7E2]/20 pt-8 text-center fade-in">
+            <p className="text-[#ECE7E2] text-lg">
+              © 2024 <span className="text-[#ECE7E2] font-semibold">DanceStudio</span>. All rights reserved. 
               <span className="block mt-2 text-base">Made with ❤️ for the dance community</span>
             </p>
           </div>

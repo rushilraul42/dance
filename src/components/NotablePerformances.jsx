@@ -13,17 +13,17 @@ const notablePerformances = [
 ];
 
 const NotablePerformances = () => (
-  <section className="py-20 bg-gradient-to-br from-[#111A19] to-[#284139]/20">
+  <section style={{ background: '#4A7766', color: '#ECE7E2' }} className="py-20">
     <div className="max-w-3xl mx-auto px-4">
       <div className="text-center mb-12 fade-in">
-        <div className="text-5xl mb-4 text-[#BB6830] bounce-animation">🌟</div>
-        <h2 className="text-4xl md:text-5xl font-bold text-[#F8D794] mb-4 highlight">Notable Performances</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-[#BB6830] to-[#284139] mx-auto rounded-full"></div>
+        <div className="text-5xl mb-4 text-[#4A7766] bounce-animation">🌟</div>
+        <h2 className="text-4xl md:text-5xl font-bold text-[#4A7766] mb-4 highlight">Notable Performances</h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-[#4A7766] to-[#C59C79] mx-auto rounded-full"></div>
       </div>
-      <ul className="space-y-6 text-lg text-[#809076]">
+      <ul className="space-y-6 text-lg text-[#4A7766]">
         {notablePerformances.map((item, idx) => (
           <li key={idx} className="flex items-start gap-3 fade-in" style={{animationDelay: `${idx * 0.1}s`}}>
-            <span className="text-[#BB6830] font-bold mt-1">•</span>
+            <span className="text-[#C59C79] font-bold mt-1">•</span>
             {item}
           </li>
         ))}
