@@ -11,11 +11,56 @@ if (typeof document !== 'undefined') {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const location = useLocation();
 
   return (
-    <header style={{ background: '#000', borderBottom: '1px solid #ECE7E2', boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)' }} className="backdrop-blur fixed top-0 right-0 left-auto w-full md:w-[calc(100%-32px)] z-50 transition-all duration-300" >
-      <div className="max-w-7xl mx-auto px-4">
+    <header style={{ background: '#000', borderBottom: '1px solid #ECE7E2', boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', zIndex: 1000 }} className="backdrop-blur fixed top-0 right-0 left-0 w-full transition-all duration-500" >
+n dev      {/* Hamburger Icon - only show on mobile */}
+      <div
+        className="hamburguer md:hidden"
+        style={{ position: 'absolute', right: 0, margin: '40px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none', display: navOpen ? 'none' : 'block' }}
+        onClick={() => setNavOpen(true)}
+        tabIndex={0}
+        aria-label="Open menu"
+      >
+        <div className="bread" style={{ width: 40, height: 5, backgroundColor: 'gold', margin: '10px 0', transition: '.2s' }}></div>
+        <div className="bread" style={{ width: 40, height: 5, backgroundColor: 'gold', margin: '10px 0', transition: '.2s' }}></div>
+      </div>
+
+      {/* Fullscreen Nav Overlay - only for mobile */}
+      <nav
+        className={`md:hidden ${navOpen ? 'open' : ''}`}
+        style={{
+          opacity: navOpen ? 1 : 0,
+          visibility: navOpen ? 'visible' : 'hidden',
+          width: '100vw',
+          height: '100vh',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 999,
+          background: 'black',
+          transition: 'opacity 0.5s, visibility 0.5s',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onClick={() => setNavOpen(false)}
+      >
+        <ul style={{ width: '100%', height: '100vh', margin: 0, padding: 0, boxSizing: 'border-box', paddingTop: '5%', textAlign: 'center', listStyle: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2rem' }} onClick={e => e.stopPropagation()}>
+          <li><Link to="/" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Home</Link></li>
+          <li><Link to="/my-journey/performances" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Performances</Link></li>
+          <li><Link to="/my-journey/notable-performances" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Notable Performances</Link></li>
+          <li><Link to="/my-journey/awards" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Awards and Honours</Link></li>
+          <li><Link to="/my-journey/school" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Dance School</Link></li>
+          <li><Link to="/my-journey/insights" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Dance Insights</Link></li>
+          <li><Link to="/register" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Register</Link></li>
+        </ul>
+      </nav>
+
+      {/* Keep the rest of your header (logo, nav, etc.) as before, but hide when navOpen */}
+      <div className="max-w-7xl mx-auto px-4" style={{ filter: navOpen ? 'blur(8px)' : 'none', pointerEvents: navOpen ? 'none' : 'auto', transition: 'filter 0.3s' }}>
         <div className="flex justify-between items-center py-4 relative">
           <Link 
             to="/" 
@@ -74,18 +119,7 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* Mobile Hamburger */}
-          <button 
-            className="flex flex-col gap-1.5 md:hidden bg-none border-none cursor-pointer p-2 z-20"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="block w-7 h-0.5 rounded" style={{ background: '#ECE7E2' }}></span>
-            <span className="block w-7 h-0.5 rounded" style={{ background: '#ECE7E2' }}></span>
-            <span className="block w-7 h-0.5 rounded" style={{ background: '#ECE7E2' }}></span>
-          </button>
-
-          {/* Off-canvas Mobile Nav */}
+          {/* Off-canvas Mobile Nav - only for mobile */}
           <nav 
             className={`md:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#4A7766] shadow-lg z-50 transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
             style={{ borderLeft: '1px solid #ECE7E2' }}

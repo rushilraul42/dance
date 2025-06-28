@@ -25,7 +25,7 @@ const Hero = () => {
   const nextSlide = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 bg-gradient-to-br from-[#4A7766] to-[#ECE7E2] fade-in">
+    <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#000' }}>
       {/* Carousel: take more space on mobile, nearly full screen */}
       <div className="relative w-full h-[92vh] sm:h-[80vh] md:h-[90vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
         <button
@@ -71,7 +71,7 @@ const Hero = () => {
       </div>
       
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center bg-gradient-to-br from-[#4A7766]/90 to-[#ECE7E2]/90 backdrop-blur rounded-t-2xl p-8 md:p-12 shadow-2xl mt-24 sm:mt-8 -translate-y-8 sm:translate-y-0 border border-[#4A7766]/20 slide-in-left">
+      <div className="w-full max-w-xl mx-auto flex flex-col items-center glass">
         <h1 className="text-4xl md:text-5xl font-bold text-[#4A7766] mb-4 text-center highlight text-reveal">Anushkaa Ramanatan</h1>
         <p className="text-lg md:text-xl text-[#4A7766] mb-8 text-center leading-relaxed fade-in" style={{animationDelay: '0.3s'}}>
           {showFullDesc ? (
