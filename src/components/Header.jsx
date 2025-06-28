@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <header style={{ background: '#000', borderBottom: '1px solid #ECE7E2', boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', zIndex: 1000 }} className="backdrop-blur fixed top-0 right-0 left-0 w-full transition-all duration-500" >
-n dev      {/* Hamburger Icon - only show on mobile */}
+      {/* Hamburger Icon - only show on mobile */}
       <div
         className="hamburguer md:hidden"
         style={{ position: 'absolute', right: 0, margin: '40px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none', display: navOpen ? 'none' : 'block' }}

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 
 const images = [
-  '/display.jpg',
   '/display2.jpg',
-  '/display3.jpg',
-  '/display4.jpg',
   '/display5.jpg',
+  '/display4.jpg',
+  '/display.jpg',
+  '/display3.jpg',
 ];
 
 const Hero = () => {
