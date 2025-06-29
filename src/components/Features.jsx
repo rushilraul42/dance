@@ -1,29 +1,13 @@
 const Features = () => {
   const features = [
-    {
-      icon: '🏆',
-      title: 'Expert Instruction',
-      description: 'Learn from experienced professionals with years of performance and teaching expertise.'
-    },
-    {
-      icon: '👥',
-      title: 'Supportive Community',
-      description: 'Join a welcoming community of dancers who support and inspire each other.'
-    },
-    {
-      icon: '⭐',
-      title: 'Personalized Growth',
-      description: 'Tailored instruction that adapts to your skill level and personal goals.'
-    }
+    
+   
   ];
 
   return (
     <section style={{ background: '#4A7766', color: '#ECE7E2' }} className="py-20">
       <div className="max-w-5xl mx-auto px-4">
         <div className="text-center mb-16 fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 highlight">
-            Experience the difference with our comprehensive dance education approach
-          </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#4A7766] to-[#C59C79] mx-auto rounded-full"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

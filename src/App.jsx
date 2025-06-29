@@ -8,7 +8,6 @@ import Insights from './components/Insights';
 import Footer from './components/Footer';
 import Register from './components/Register';
 import Achievements from './components/Achievements';
-import NotablePerformances from './components/NotablePerformances';
 import Awards from './components/Awards';
 import DanceSchool from './components/DanceSchool';
 import DanceInsights from './components/DanceInsights';
@@ -27,7 +26,7 @@ function App() {
               element={
                 <div className="fade-in">
                   <Hero />
-                  <Features />
+                
                 </div>
               }
             />
@@ -52,7 +51,6 @@ function App() {
               }
             />
             <Route path="/my-journey/performances" element={<Performances />} />
-            <Route path="/my-journey/notable-performances" element={<NotablePerformances />} />
             <Route path="/my-journey/awards" element={<Awards />} />
             <Route path="/my-journey/school" element={<DanceSchool />} />
             <Route path="/my-journey/insights" element={<DanceInsights />} />

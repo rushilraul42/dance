@@ -1,3 +1,5 @@
+import React from "react";
+
 const awards = [
   "Nalanda 'Academic Excellence' award for securing 1st Rank in 5 consecutive years",
   "Nalanda 'Nritya Nipuna', 2025",
@@ -7,12 +9,13 @@ const awards = [
 ];
 
 const honoursImages = [
+  '/h0.jpg',
   '/h1.jpg',
   '/h2.jpg'
 ];
 
 const Awards = () => (
-  <section style={{ background: '#222', color: '#ECE7E2', position: 'relative', overflow: 'hidden' }} className="pt-0 py-20">
+  <section style={{ background: '#222', color: '#ECE7E2', position: 'relative', overflow: 'hidden' }} className="pt-0 py-20 mt-20">
     {/* Blurred background image */}
     <img
       src="/award.jpg"
@@ -26,7 +29,7 @@ const Awards = () => (
         objectFit: 'cover',
         objectPosition: 'center',
         zIndex: 0,
-        filter: window.innerWidth < 768 ? 'blur(0.2px) brightness(0.5)' : 'blur(0.7px) brightness(0.5)',
+        filter: window.innerWidth < 768 ? ' brightness(0.5)' : 'blur(0.7px) brightness(0.5)',
         opacity: 0.6,
         pointerEvents: 'none',
       }}
@@ -45,22 +48,88 @@ const Awards = () => (
           </li>
         ))}
       </ul>
-      <div className="text-center mb-8 fade-in">
-        <h3 className="text-3xl font-bold mb-6 highlight" style={{ color: '#ECE7E2' }}>Honours</h3>
-        <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-          {honoursImages.map((src, idx) => (
-            <img
-              key={idx}
-              src={src}
-              alt={`Honour ${idx + 1}`}
-              className="rounded-2xl shadow-lg border max-w-xs w-full object-cover"
-              style={{ maxHeight: '340px', borderColor: '#ECE7E2' }}
-            />
-          ))}
-        </div>
-      </div>
+      
     </div>
   </section>
 );
 
-export default Awards;
+// Mentions section with glass effect
+const Mentions = () => {
+  // Expandable image modal state
+  const [modalImg, setModalImg] = React.useState(null);
+  return (
+    <section style={{ background: 'transparent', position: 'relative', overflow: 'visible', marginTop: '4rem' }}>
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="text-center mb-8 fade-in">
+          <h3 className="text-4xl md:text-5xl font-bold mb-6 highlight" style={{ color: '#ECE7E2' }}>Mentions</h3>
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.09)',
+              borderRadius: '16px',
+              boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+              backdropFilter: 'blur(0.9px)',
+              WebkitBackdropFilter: 'blur(0.9px)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              padding: '2rem',
+              width: '100%',
+              maxWidth: '700px',
+              color: '#ECE7E2',
+              margin: '0 auto',
+              textAlign: 'center',
+            }}>
+              <div className="flex flex-col gap-6">
+                {honoursImages.map((img, idx) => (
+                  <React.Fragment key={img}>
+                    <img
+                      src={img}
+                      alt={`Mention ${idx + 1}`}
+                      className="rounded-2xl shadow-lg border max-w-xs w-full object-cover mx-auto cursor-pointer"
+                      style={{ maxHeight: '340px', borderColor: '#ECE7E2' }}
+                      onClick={() => setModalImg(img)}
+                    />
+                    {idx === 0 && (
+                      <div style={{ fontFamily: 'Narziss, serif', fontSize: '1.5rem', letterSpacing: '1px', fontWeight: 400, color: '#111' }}>
+                      </div>
+                    )}
+                    {idx === 1 && (
+                      <div style={{ fontFamily: 'Narziss, serif', fontSize: '1.5rem', letterSpacing: '1px', fontWeight: 400, color: '#111' }}>
+                        My performance at 'Nritya Tarangini Utsav' 2024.
+                      </div>
+                    )}
+                    {idx === 2 && (
+                      <div style={{ fontFamily: 'Narziss, serif', fontSize: '1.5rem', letterSpacing: '1px', fontWeight: 400, color: '#111' }}>
+                        'Narthaki' magazine's newsletter mentions the awardees of Nalanda Nritya Nipuna
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Modal for expanded image */}
+        {modalImg && (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(0,0,0,0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }} onClick={() => setModalImg(null)}>
+            <img src={modalImg} alt="Expanded" style={{ maxHeight: '90vh', maxWidth: '90vw', borderRadius: '1rem', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)' }} />
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default () => (<>
+  <Awards />
+  <Mentions />
+</>);

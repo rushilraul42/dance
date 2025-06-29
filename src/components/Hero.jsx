@@ -1,5 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
 
+// Import fonts
+if (typeof document !== 'undefined') {
+  // Playfair Display for title
+  const playfairLink = document.createElement('link');
+  playfairLink.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap';
+  playfairLink.rel = 'stylesheet';
+  document.head.appendChild(playfairLink);
+  
+  // Narziss font for description
+  const narzissLink = document.createElement('link');
+  narzissLink.href = 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap';
+  narzissLink.rel = 'stylesheet';
+  document.head.appendChild(narzissLink);
+}
+
 const images = [
   '/display2.jpg',
   '/display5.jpg',
@@ -71,9 +86,19 @@ const Hero = () => {
       </div>
       
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center glass">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#4A7766] mb-4 text-center highlight text-reveal">Anushkaa Ramanatan</h1>
-        <p className="text-lg md:text-xl text-[#4A7766] mb-8 text-center leading-relaxed fade-in" style={{animationDelay: '0.3s'}}>
+      <div className="w-full max-w-xl mx-auto flex flex-col items-center px-4 sm:px-8 backdrop-blur-md rounded-2xl shadow-2xl my-8" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.5)', background: '#000000', backdropFilter: 'blur(12px)' }}>
+        <h1
+          className="text-4xl md:text-5xl font-bold mb-4 text-center highlight fade-in"
+          style={{
+            color: '#B06A37',
+            fontFamily: 'Playfair Display, serif',
+            fontStyle: 'italic',
+          }}
+        >
+          Anushkaa Ramanatan
+        </h1>
+
+        <p className="text-base md:text-lg mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'EB Garamond, serif', letterSpacing: '1px', fontWeight: 500, color: '#FF6600' }}>
           {showFullDesc ? (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
@@ -84,12 +109,12 @@ const Hero = () => {
           ) : (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
-              <button onClick={() => setShowFullDesc(true)} className="text-[#4A7766] underline font-semibold ml-1">Read more</button>
+              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'EB Garamond, serif', color: '#FF6600' }}>Read more</button>
             </>
           )}
         </p>
         {showFullDesc && (
-          <button onClick={() => setShowFullDesc(false)} className="text-[#4A7766] underline font-semibold mb-4">Show less</button>
+          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'EB Garamond, serif', color: '#FF6600' }}>Show less</button>
         )}
         <a
           href="/ArtisteBiography.pdf"
@@ -98,7 +123,7 @@ const Hero = () => {
           style={{animationDelay: '0.5s'}}
         >
           <span className="text-xl">📄</span>
-          Download Resume
+          Resume
         </a>
       </div>
     </section>

@@ -4,6 +4,26 @@ import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
+module.exports = {
+  theme: {
+    extend: {
+      backgroundImage: {
+        'barley-gradient': 'linear-gradient(90deg, #B06A37, #FFF4E8, #B06A37)',
+      },
+      animation: {
+        'text-gradient': 'textGradient 5s ease infinite',
+      },
+      keyframes: {
+        textGradient: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+      },
+    },
+  },
+  plugins: [],
+};
+
 export default [
   { ignores: ['dist'] },
   {

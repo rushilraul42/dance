@@ -18,8 +18,8 @@ const Header = () => {
     <header style={{ background: '#000', borderBottom: '1px solid #ECE7E2', boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', zIndex: 1000 }} className="backdrop-blur fixed top-0 right-0 left-0 w-full transition-all duration-500" >
       {/* Hamburger Icon - only show on mobile */}
       <div
-        className="hamburguer md:hidden"
-        style={{ position: 'absolute', right: 0, margin: '40px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none', display: navOpen ? 'none' : 'block' }}
+        className="md:hidden"
+        style={{ position: 'absolute', right: 0, margin: '40px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none' }}
         onClick={() => setNavOpen(true)}
         tabIndex={0}
         aria-label="Open menu"
@@ -51,7 +51,6 @@ const Header = () => {
         <ul style={{ width: '100%', height: '100vh', margin: 0, padding: 0, boxSizing: 'border-box', paddingTop: '5%', textAlign: 'center', listStyle: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2rem' }} onClick={e => e.stopPropagation()}>
           <li><Link to="/" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Home</Link></li>
           <li><Link to="/my-journey/performances" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Performances</Link></li>
-          <li><Link to="/my-journey/notable-performances" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Notable Performances</Link></li>
           <li><Link to="/my-journey/awards" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Awards and Honours</Link></li>
           <li><Link to="/my-journey/school" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Dance School</Link></li>
           <li><Link to="/my-journey/insights" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Dance Insights</Link></li>
@@ -99,7 +98,6 @@ const Header = () => {
                   {/* Dropdown menu */}
                   <ul style={{ background: '#4A7766', border: '1px solid #ECE7E2' }} className="absolute left-0 mt-2 w-56 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-30">
                     <li><Link to="/my-journey/performances" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Performances</Link></li>
-                    <li><Link to="/my-journey/notable-performances" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Notable Performances</Link></li>
                     <li><Link to="/my-journey/awards" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Awards and Honours</Link></li>
                     <li><Link to="/my-journey/school" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Dance School</Link></li>
                     <li><Link to="/my-journey/insights" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Dance Insights</Link></li>
@@ -157,7 +155,6 @@ const Header = () => {
                 {isMenuOpen === 'journey' && (
                   <ul style={{ background: '#4A7766', borderTop: '1px solid #ECE7E2' }} className="ml-4">
                     <li><Link to="/my-journey/performances" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Performances</Link></li>
-                    <li><Link to="/my-journey/notable-performances" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Notable Performances</Link></li>
                     <li><Link to="/my-journey/awards" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Awards and Honours</Link></li>
                     <li><Link to="/my-journey/school" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Dance School</Link></li>
                     <li><Link to="/my-journey/insights" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Dance Insights</Link></li>
