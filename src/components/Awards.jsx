@@ -1,7 +1,7 @@
 import React from "react";
 
 const awards = [
-  "Nalanda 'Academic Excellence' award for securing 1st Rank in 5 consecutive years",
+  "Nalanda 'Academic Excellence' award for rank in 5 consecutive years",
   "Nalanda 'Nritya Nipuna', 2025",
   "Vasudev Nrutya Kala Manch - All India National Dance Competition - 2nd Prize",
   "Akhil Natarajam Sanskrut Sangh - Online Dance Competition (Season 3) - 1st Prize",
@@ -37,34 +37,31 @@ const Awards = () => (
     />
     <div className="max-w-3xl mx-auto px-4 pt-32" style={{ position: 'relative', zIndex: 1 }}>
       <div className="text-center mb-12 fade-in mt-0">
-        {/* Removed the 3c6 icon/number */}
         <h2 className="text-4xl md:text-5xl font-bold mb-4 highlight" style={{ color: '#ECE7E2' }}>Awards</h2>
         <div className="w-24 h-1 mx-auto rounded-full" style={{ background: '#ECE7E2' }}></div>
       </div>
-      <ul className="space-y-6 text-lg mb-16" style={{ fontFamily: 'Narziss, serif', letterSpacing: '1px', fontWeight: 400, textAlign: 'center' }}>
+      <ul className="space-y-6 text-lg mb-16" style={{ fontFamily: 'Lucida Calligraphy, Narziss, serif', fontStyle: 'italic', letterSpacing: '1px', fontWeight: 400, textAlign: 'center' }}>
         {awards.map((item, idx) => (
           <li key={idx} className="fade-in" style={{ animationDelay: `${idx * 0.1}s`, color: '#ECE7E2', display: 'block' }}>
             {item}
           </li>
         ))}
       </ul>
-      
     </div>
   </section>
 );
 
-// Mentions section with glass effect
 const Mentions = () => {
-  // Expandable image modal state
   const [modalImg, setModalImg] = React.useState(null);
+
   return (
-    <section style={{ background: 'transparent', position: 'relative', overflow: 'visible', marginTop: '4rem' }}>
+    <section style={{ background: '#EFDFBB', position: 'relative', overflow: 'visible', marginTop: '4.25rem', paddingBottom: '5rem' }}>
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-8 fade-in">
-          <h3 className="text-4xl md:text-5xl font-bold mb-6 highlight" style={{ color: '#ECE7E2' }}>Mentions</h3>
+          <h3 className="text-4xl md:text-5xl font-bold mb-6 highlight" style={{ color: '#EFDFBB' }}>Mentions</h3>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
             <div style={{
-              background: 'rgba(255, 255, 255, 0.09)',
+              background: '#722F37',
               borderRadius: '16px',
               boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
               backdropFilter: 'blur(0.9px)',
@@ -87,26 +84,23 @@ const Mentions = () => {
                       style={{ maxHeight: '340px', borderColor: '#ECE7E2' }}
                       onClick={() => setModalImg(img)}
                     />
-                    {idx === 0 && (
-                      <div style={{ fontFamily: 'Narziss, serif', fontSize: '1.5rem', letterSpacing: '1px', fontWeight: 400, color: '#111' }}>
-                      </div>
-                    )}
-                    {idx === 1 && (
-                      <div style={{ fontFamily: 'Narziss, serif', fontSize: '1.5rem', letterSpacing: '1px', fontWeight: 400, color: '#111' }}>
-                        My performance at 'Nritya Tarangini Utsav' 2024.
-                      </div>
-                    )}
-                    {idx === 2 && (
-                      <div style={{ fontFamily: 'Narziss, serif', fontSize: '1.5rem', letterSpacing: '1px', fontWeight: 400, color: '#111' }}>
-                        'Narthaki' magazine's newsletter mentions the awardees of Nalanda Nritya Nipuna
-                      </div>
-                    )}
+                    <div style={{
+                      fontFamily: 'Narziss, serif',
+                      fontSize: '1.5rem',
+                      letterSpacing: '1px',
+                      fontWeight: 400,
+                      color: '#EFDFBB'
+                    }}>
+                      {idx === 1 && "My performance at 'Nritya Tarangini Utsav' 2024."}
+                      {idx === 2 && "'Narthaki' magazine's newsletter mentions the awardees of Nalanda Nritya Nipuna"}
+                    </div>
                   </React.Fragment>
                 ))}
               </div>
             </div>
           </div>
         </div>
+
         {/* Modal for expanded image */}
         {modalImg && (
           <div style={{
@@ -121,7 +115,12 @@ const Mentions = () => {
             justifyContent: 'center',
             zIndex: 1000
           }} onClick={() => setModalImg(null)}>
-            <img src={modalImg} alt="Expanded" style={{ maxHeight: '90vh', maxWidth: '90vw', borderRadius: '1rem', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)' }} />
+            <img src={modalImg} alt="Expanded" style={{
+              maxHeight: '90vh',
+              maxWidth: '90vw',
+              borderRadius: '1rem',
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)'
+            }} />
           </div>
         )}
       </div>
@@ -129,7 +128,11 @@ const Mentions = () => {
   );
 };
 
-export default () => (<>
-  <Awards />
-  <Mentions />
-</>);
+export default function AwardsAndMentions() {
+  return (
+    <>
+      <Awards />
+      <Mentions />
+    </>
+  );
+}

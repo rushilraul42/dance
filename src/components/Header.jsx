@@ -15,7 +15,7 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <header style={{ background: '#000', borderBottom: '1px solid #ECE7E2', boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', zIndex: 1000 }} className="backdrop-blur fixed top-0 right-0 left-0 w-full transition-all duration-500" >
+    <header style={{ background: '#722F37', borderBottom: '1px solid #ECE7E2', boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', zIndex: 1000 }} className="backdrop-blur fixed top-0 right-0 left-0 w-full transition-all duration-500" >
       {/* Hamburger Icon - only show on mobile */}
       <div
         className="md:hidden"
@@ -24,8 +24,8 @@ const Header = () => {
         tabIndex={0}
         aria-label="Open menu"
       >
-        <div className="bread" style={{ width: 40, height: 5, backgroundColor: 'gold', margin: '10px 0', transition: '.2s' }}></div>
-        <div className="bread" style={{ width: 40, height: 5, backgroundColor: 'gold', margin: '10px 0', transition: '.2s' }}></div>
+        <div className="bread" style={{ width: 40, height: 5, backgroundColor: '#EFDFBB', margin: '10px 0', transition: '.2s' }}></div>
+        <div className="bread" style={{ width: 40, height: 5, backgroundColor: '#EFDFBB', margin: '10px 0', transition: '.2s' }}></div>
       </div>
 
       {/* Fullscreen Nav Overlay - only for mobile */}

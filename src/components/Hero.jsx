@@ -40,7 +40,7 @@ const Hero = () => {
   const nextSlide = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#000' }}>
+    <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#EFDFBB' }}>
       {/* Carousel: take more space on mobile, nearly full screen */}
       <div className="relative w-full h-[92vh] sm:h-[80vh] md:h-[90vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
         <button
@@ -86,11 +86,11 @@ const Hero = () => {
       </div>
       
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center px-4 sm:px-8 backdrop-blur-md rounded-2xl shadow-2xl my-8" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.5)', background: '#000000', backdropFilter: 'blur(12px)' }}>
+      <div className="w-full max-w-xl mx-auto flex flex-col items-center px-4 sm:px-8 my-8">
         <h1
-          className="text-4xl md:text-5xl font-bold mb-4 text-center highlight fade-in"
+          className="text-4xl md:text-5xl font-bold mb-4 text-center"
           style={{
-            color: '#B06A37',
+            color: '#722F37',
             fontFamily: 'Playfair Display, serif',
             fontStyle: 'italic',
           }}
@@ -98,7 +98,7 @@ const Hero = () => {
           Anushkaa Ramanatan
         </h1>
 
-        <p className="text-base md:text-lg mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'EB Garamond, serif', letterSpacing: '1px', fontWeight: 500, color: '#FF6600' }}>
+        <p className="text-base md:text-lg mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'EB Garamond, serif', letterSpacing: '1px', fontWeight: 500, color: '#0C0C0C' }}>
           {showFullDesc ? (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
@@ -109,12 +109,12 @@ const Hero = () => {
           ) : (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
-              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'EB Garamond, serif', color: '#FF6600' }}>Read more</button>
+              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'EB Garamond, serif', color: '#0C0C0C' }}>Read more</button>
             </>
           )}
         </p>
         {showFullDesc && (
-          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'EB Garamond, serif', color: '#FF6600' }}>Show less</button>
+          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'EB Garamond, serif', color: '#0C0C0C' }}>Show less</button>
         )}
         <a
           href="/ArtisteBiography.pdf"

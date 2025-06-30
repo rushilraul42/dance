@@ -1,13 +1,13 @@
 const Footer = () => {
   return (
-    <footer style={{ background: '#4A7766', color: '#ECE7E2', padding: '0.2rem 0' }}>
+    <footer style={{ background: '#722F37', color: '#EFDFBB', padding: '0.2rem 0' }}>
       <div className="flex flex-col items-center gap-1">
         <div className="flex justify-center items-center gap-1 mt-1 mb-1">
           <a
             href="https://www.instagram.com/nrtyam_heals?igsh=MTY4cWY4MTl2eGJmcw%3D%3D&utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-6 h-6 flex items-center justify-center bg-[#F8D794]/10 rounded text-[#F8D794] text-base hover:bg-[#BB6830] hover:scale-110 transition-all duration-300 shadow"
+            className="w-6 h-6 flex items-center justify-center bg-[#EFDFBB]/20 rounded text-[#EFDFBB] text-base hover:bg-[#EFDFBB] hover:text-[#722F37] hover:scale-110 transition-all duration-300 shadow"
             aria-label="Instagram"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4">
@@ -21,7 +21,7 @@ const Footer = () => {
             href="https://m.youtube.com/channel/UCUxL2cAnx-CrXsCP1P35QJg?fbclid=PAQ0xDSwLKMBtleHRuA2FlbQIxMQABp1QzQSjEDGxpn7uHKi0fZedcCqgU4Hiu9P72m-1Amp8vW8FhhKxgRL-F5fae_aem_fAXZ96Uym16HGxSt61X0eg"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-6 h-6 flex items-center justify-center bg-[#F8D794]/10 rounded text-[#F8D794] text-base hover:bg-[#BB6830] hover:scale-110 transition-all duration-300 shadow"
+            className="w-6 h-6 flex items-center justify-center bg-[#EFDFBB]/20 rounded text-[#EFDFBB] text-base hover:bg-[#EFDFBB] hover:text-[#722F37] hover:scale-110 transition-all duration-300 shadow"
             aria-label="YouTube"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-4 h-4">
@@ -29,7 +29,7 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-        <div className="text-center text-[#ECE7E2] text-xs pb-1">
+        <div className="text-center text-[#EFDFBB] text-xs pb-1">
           © 2024 <span className="font-semibold">DanceStudio</span>. All rights reserved.
         </div>
       </div>
@@ -38,3 +38,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

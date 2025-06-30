@@ -29,14 +29,14 @@ const Performances = () => {
   ];
 
   return (
-    <section style={{ background: '#4A7766', color: '#ECE7E2' }} className="py-20 mt-20">
+    <section style={{ background: '#EFDFBB', color: '#0C0C0C' }} className="py-20 mt-20">
       <div className="max-w-6xl mx-auto px-4">
         {/* Performances Header */}
         <div className="text-center mb-16 fade-in">
           <div className="text-5xl mb-4 animate-gradient-glow">▶️</div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-gradient-glow" style={{ fontFamily: 'Narziss, serif', fontStyle: 'italic' }}>Performances</h2>
-          <p className="text-xl mb-6 leading-relaxed animate-gradient-glow">Watch our talented instructor in action</p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#B06A37] to-[#FFF4E9] mx-auto rounded-full"></div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-gradient-glow text-[#0C0C0C]" style={{ fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>Performances</h2>
+          <p className="text-xl mb-6 leading-relaxed animate-gradient-glow text-[#0C0C0C]">Watch our talented instructor in action</p>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#722F37] to-[#0C0C0C] mx-auto rounded-full"></div>
         </div>
 
         {/* Performance Videos */}
@@ -49,7 +49,7 @@ const Performances = () => {
                 href={performance.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl bg-[#284139]/40 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden group border border-[#809076]/20 hover:border-[#BB6830]/50 card-hover stagger-item"
+                className="rounded-2xl bg-[#722F37]/20 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden group border border-[#722F37]/30 hover:border-[#722F37]/70 card-hover stagger-item"
                 style={{animationDelay: `${index * 0.2}s`}}
               >
                 <div className="relative h-64 overflow-hidden">
@@ -58,15 +58,15 @@ const Performances = () => {
                     alt={performance.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#284139]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                    <button className="w-20 h-20 rounded-full bg-[#F8D794]/95 flex items-center justify-center text-4xl text-[#BB6830] shadow-2xl hover:scale-110 transition-transform duration-300 pulse-animation">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#722F37]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                    <button className="w-20 h-20 rounded-full bg-[#EFDFBB]/95 flex items-center justify-center text-4xl text-[#722F37] shadow-2xl hover:scale-110 transition-transform duration-300 pulse-animation">
                       ▶️
                     </button>
                   </div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-[#F8D794] mb-3">{performance.title}</h3>
-                  <p className="text-[#809076] leading-relaxed">{performance.description}</p>
+                  <h3 className="text-2xl font-bold text-[#722F37] mb-3">{performance.title}</h3>
+                  <p className="text-[#0C0C0C] leading-relaxed">{performance.description}</p>
                 </div>
               </a>
             );
@@ -75,14 +75,13 @@ const Performances = () => {
 
         {/* Notable Performances Section */}
         <div className="text-center mb-12 fade-in">
-          <div className="text-5xl mb-4 text-[#F8D794] bounce-animation">🌟</div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F8D794] mb-4 highlight">Notable Performances</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#F8D794] to-[#C59C79] mx-auto rounded-full"></div>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#722F37] mb-4 highlight">Notable Performances</h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#722F37] to-[#0C0C0C] mx-auto rounded-full"></div>
         </div>
-        <ul className="space-y-6 text-lg text-[#ECE7E2] max-w-3xl mx-auto">
+        <ul className="space-y-6 text-lg text-[#0C0C0C] max-w-3xl mx-auto" style={{ fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
           {notablePerformances.map((item, idx) => (
             <li key={idx} className="flex items-start gap-3 fade-in" style={{animationDelay: `${idx * 0.1}s`}}>
-              <span className="text-[#C59C79] font-bold mt-1">•</span>
+              <span className="text-[#722F37] font-bold mt-1">•</span>
               {item}
             </li>
           ))}
