@@ -5,7 +5,7 @@ const Performances = () => {
     {
       title: 'Subhashita | Bharatanatyam',
       href: 'https://youtu.be/Psqpo_fyjNo?si=jcHVNSN3PaEarTnp',
-      description: 'Our annual spring showcase featuring all dance levels'
+      description: 'An amusing conversation between Goddess Parvati and Goddess Lakshmi. '
     },
     {
       title: 'Vasantha Pushpanjali | Bharatanatyam',
@@ -49,8 +49,8 @@ const Performances = () => {
                 href={performance.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl bg-[#722F37]/20 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden group border border-[#722F37]/30 hover:border-[#722F37]/70 card-hover stagger-item"
-                style={{animationDelay: `${index * 0.2}s`}}
+                className="rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden group border border-[#722F37]/30 hover:border-[#722F37]/70 card-hover stagger-item"
+                style={{animationDelay: `${index * 0.2}s`, backgroundColor: '#722F37'}}
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
@@ -65,8 +65,8 @@ const Performances = () => {
                   </div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-[#722F37] mb-3">{performance.title}</h3>
-                  <p className="text-[#0C0C0C] leading-relaxed">{performance.description}</p>
+                  <h3 className="text-2xl font-bold mb-3" style={{ color: '#EFDFBB' }}>{performance.title}</h3>
+                  <p className="leading-relaxed" style={{ fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic', color: '#EFDFBB' }}>{performance.description}</p>
                 </div>
               </a>
             );
@@ -78,14 +78,16 @@ const Performances = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-[#722F37] mb-4 highlight">Notable Performances</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#722F37] to-[#0C0C0C] mx-auto rounded-full"></div>
         </div>
-        <ul className="space-y-6 text-lg text-[#0C0C0C] max-w-3xl mx-auto" style={{ fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
-          {notablePerformances.map((item, idx) => (
-            <li key={idx} className="flex items-start gap-3 fade-in" style={{animationDelay: `${idx * 0.1}s`}}>
-              <span className="text-[#722F37] font-bold mt-1">•</span>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <div className="bg-[#722F37] rounded-2xl p-8 shadow-lg">
+          <ul className="space-y-6 text-lg max-w-3xl mx-auto" style={{ fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic', color: '#EFDFBB' }}>
+            {notablePerformances.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-3 fade-in" style={{animationDelay: `${idx * 0.1}s`}}>
+                <span className="text-[#EFDFBB] font-bold mt-1">•</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

@@ -19,13 +19,27 @@ const Header = () => {
       {/* Hamburger Icon - only show on mobile */}
       <div
         className="md:hidden"
-        style={{ position: 'absolute', right: 0, margin: '40px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none' }}
-        onClick={() => setNavOpen(true)}
+        style={{ position: 'absolute', right: '20px', top: '22px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none' }}
+        onClick={() => setNavOpen(!navOpen)}
         tabIndex={0}
         aria-label="Open menu"
       >
-        <div className="bread" style={{ width: 40, height: 5, backgroundColor: '#EFDFBB', margin: '10px 0', transition: '.2s' }}></div>
-        <div className="bread" style={{ width: 40, height: 5, backgroundColor: '#EFDFBB', margin: '10px 0', transition: '.2s' }}></div>
+        <div className="bread" style={{ 
+          width: 30, 
+          height: 3, 
+          backgroundColor: '#EFDFBB', 
+          margin: '6px 0', 
+          transition: '.3s',
+          transform: navOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none'
+        }}></div>
+        <div className="bread" style={{ 
+          width: 30, 
+          height: 3, 
+          backgroundColor: '#EFDFBB', 
+          margin: '6px 0', 
+          transition: '.3s',
+          transform: navOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none'
+        }}></div>
       </div>
 
       {/* Fullscreen Nav Overlay - only for mobile */}
@@ -40,7 +54,7 @@ const Header = () => {
           top: 0,
           left: 0,
           zIndex: 999,
-          background: 'black',
+          background: '#722F37',
           transition: 'opacity 0.5s, visibility 0.5s',
           display: 'flex',
           alignItems: 'center',
@@ -48,13 +62,128 @@ const Header = () => {
         }}
         onClick={() => setNavOpen(false)}
       >
-        <ul style={{ width: '100%', height: '100vh', margin: 0, padding: 0, boxSizing: 'border-box', paddingTop: '5%', textAlign: 'center', listStyle: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2rem' }} onClick={e => e.stopPropagation()}>
-          <li><Link to="/" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Home</Link></li>
-          <li><Link to="/my-journey/performances" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Performances</Link></li>
-          <li><Link to="/my-journey/awards" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Awards and Honours</Link></li>
-          <li><Link to="/my-journey/school" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Dance School</Link></li>
-          <li><Link to="/my-journey/insights" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Dance Insights</Link></li>
-          <li><Link to="/register" style={{ display: 'block', padding: '10px 0', fontSize: '2rem', color: 'white', textDecoration: 'none', transition: 'color .6s' }} onClick={() => setNavOpen(false)}>Register</Link></li>
+        {/* Cancel button always visible at the top */}
+        <div
+          style={{ 
+            position: 'absolute', 
+            right: '20px', 
+            top: '22px', 
+            zIndex: 1000, 
+            cursor: 'pointer' 
+          }}
+          onClick={() => setNavOpen(false)}
+        >
+          <div className="bread" style={{ 
+            width: 30, 
+            height: 3, 
+            backgroundColor: '#EFDFBB', 
+            margin: '6px 0', 
+            transition: '.3s',
+            transform: 'rotate(45deg) translate(5px, 5px)'
+          }}></div>
+          <div className="bread" style={{ 
+            width: 30, 
+            height: 3, 
+            backgroundColor: '#EFDFBB', 
+            margin: '6px 0', 
+            transition: '.3s',
+            transform: 'rotate(-45deg) translate(5px, -5px)'
+          }}></div>
+        </div>
+
+        <ul style={{ 
+          width: '100%', 
+          height: '100vh', 
+          margin: 0, 
+          padding: '0 2rem', 
+          boxSizing: 'border-box', 
+          paddingTop: '15%', 
+          paddingBottom: '15%', 
+          textAlign: 'center', 
+          listStyle: 'none', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          gap: '2rem' 
+        }} onClick={e => e.stopPropagation()}>
+          <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
+            <Link to="/" style={{ 
+              display: 'block', 
+              padding: '8px 0', 
+              fontSize: '1.8rem', 
+              color: '#EFDFBB', 
+              textDecoration: 'none', 
+              transition: 'color .6s, transform .3s',
+              fontWeight: '500',
+              fontFamily: 'Lucida Calligraphy, cursive',
+              fontStyle: 'italic'
+            }} onClick={() => setNavOpen(false)}>Home</Link>
+          </li>
+          <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
+            <Link to="/my-journey/performances" style={{ 
+              display: 'block', 
+              padding: '8px 0', 
+              fontSize: '1.8rem', 
+              color: '#EFDFBB', 
+              textDecoration: 'none', 
+              transition: 'color .6s, transform .3s',
+              fontWeight: '500',
+              fontFamily: 'Lucida Calligraphy, cursive',
+              fontStyle: 'italic'
+            }} onClick={() => setNavOpen(false)}>Performances</Link>
+          </li>
+          <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
+            <Link to="/my-journey/awards" style={{ 
+              display: 'block', 
+              padding: '8px 0', 
+              fontSize: '1.8rem', 
+              color: '#EFDFBB', 
+              textDecoration: 'none', 
+              transition: 'color .6s, transform .3s',
+              fontWeight: '500',
+              fontFamily: 'Lucida Calligraphy, cursive',
+              fontStyle: 'italic'
+            }} onClick={() => setNavOpen(false)}>Awards and Honours</Link>
+          </li>
+          <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
+            <Link to="/my-journey/school" style={{ 
+              display: 'block', 
+              padding: '8px 0', 
+              fontSize: '1.8rem', 
+              color: '#EFDFBB', 
+              textDecoration: 'none', 
+              transition: 'color .6s, transform .3s',
+              fontWeight: '500',
+              fontFamily: 'Lucida Calligraphy, cursive',
+              fontStyle: 'italic'
+            }} onClick={() => setNavOpen(false)}>Dance School</Link>
+          </li>
+          <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
+            <Link to="/my-journey/insights" style={{ 
+              display: 'block', 
+              padding: '8px 0', 
+              fontSize: '1.8rem', 
+              color: '#EFDFBB', 
+              textDecoration: 'none', 
+              transition: 'color .6s, transform .3s',
+              fontWeight: '500',
+              fontFamily: 'Lucida Calligraphy, cursive',
+              fontStyle: 'italic'
+            }} onClick={() => setNavOpen(false)}>Dance Insights</Link>
+          </li>
+          <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
+            <Link to="/register" style={{ 
+              display: 'block', 
+              padding: '8px 0', 
+              fontSize: '1.8rem', 
+              color: '#EFDFBB', 
+              textDecoration: 'none', 
+              transition: 'color .6s, transform .3s',
+              fontWeight: '500',
+              fontFamily: 'Lucida Calligraphy, cursive',
+              fontStyle: 'italic'
+            }} onClick={() => setNavOpen(false)}>Register</Link>
+          </li>
         </ul>
       </nav>
 
@@ -78,7 +207,7 @@ const Header = () => {
                 <Link 
                   to="/"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold"
-                  style={{ color: '#ECE7E2', background: 'transparent' }}
+                  style={{ color: '#EFDFBB', background: 'transparent' }}
                 >
                   <span className="text-base">🏠</span>
                   Home
@@ -88,19 +217,19 @@ const Header = () => {
                 <div className="group relative">
                   <button
                     className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold"
-                    style={{ color: '#ECE7E2', background: 'transparent' }}
+                    style={{ color: '#EFDFBB', background: 'transparent' }}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <span className="text-base">🧭</span>
                     My Journey
-                    <svg className="ml-2 w-4 h-4 inline-block" fill="none" stroke="#ECE7E2" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    <svg className="ml-2 w-4 h-4 inline-block" fill="none" stroke="#EFDFBB" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                   </button>
                   {/* Dropdown menu */}
-                  <ul style={{ background: '#4A7766', border: '1px solid #ECE7E2' }} className="absolute left-0 mt-2 w-56 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-30">
-                    <li><Link to="/my-journey/performances" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Performances</Link></li>
-                    <li><Link to="/my-journey/awards" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Awards and Honours</Link></li>
-                    <li><Link to="/my-journey/school" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Dance School</Link></li>
-                    <li><Link to="/my-journey/insights" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }}>Dance Insights</Link></li>
+                  <ul style={{ background: '#722F37', border: '1px solid #EFDFBB' }} className="absolute left-0 mt-2 w-56 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-30">
+                    <li><Link to="/my-journey/performances" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Performances</Link></li>
+                    <li><Link to="/my-journey/awards" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Awards and Honours</Link></li>
+                    <li><Link to="/my-journey/school" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Dance School</Link></li>
+                    <li><Link to="/my-journey/insights" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Dance Insights</Link></li>
                   </ul>
                 </div>
               </li>
@@ -108,7 +237,7 @@ const Header = () => {
                 <Link 
                   to="/register"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold"
-                  style={{ color: '#ECE7E2', background: 'transparent' }}
+                  style={{ color: '#EFDFBB', background: 'transparent' }}
                 >
                   <span className="text-base">👤</span>
                   Register

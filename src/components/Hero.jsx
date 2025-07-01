@@ -119,8 +119,8 @@ const Hero = () => {
         <a
           href="/ArtisteBiography.pdf"
           download
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-[#C59C79] to-[#4A7766] hover:from-[#4A7766] hover:to-[#C59C79] text-[#ECE7E2] font-bold shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl btn-primary scale-in"
-          style={{animationDelay: '0.5s'}}
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl"
+          style={{ backgroundColor: '#722F37', color: '#EFDFBB', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
         >
           <span className="text-xl">📄</span>
           Resume
