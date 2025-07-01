@@ -3,7 +3,7 @@ const Register = () => {
     <section
       className="w-full min-h-screen flex flex-col items-center justify-center py-20 px-4 text-center"
       style={{ 
-        background: '#EFDFBB !important', 
+        background: '#F5F5DC !important', 
         color: '#0C0C0C',
         position: 'relative',
         zIndex: 1
@@ -32,7 +32,7 @@ const Register = () => {
         <div
           className="rounded-2xl p-8 shadow-2xl border mb-8 scale-in w-full"
           style={{
-            background: '#722F37 !important',
+            background: '#722F37',
             borderColor: '#EFDFBB',
             animationDelay: '0.5s',
           }}

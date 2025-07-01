@@ -53,8 +53,10 @@ const Hero = () => {
         <img
           src={images[current]}
           alt={`Performance ${current + 1}`}
-          className="w-full h-full object-cover md:object-contain bg-[#ECE7E2] select-none transition-all duration-700 ease-in-out scale-in"
+          className="w-full h-full select-none transition-all duration-700 ease-in-out scale-in"
           style={{
+            objectFit: window.innerWidth < 768 ? 'cover' : 'contain',
+            objectPosition: 'center',
             maxHeight: '100%',
             minHeight: '320px',
             opacity: 1,
