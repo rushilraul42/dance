@@ -51,7 +51,6 @@ const DanceSchool = () => (
       {/* Reviews Section */}
       <div className="mt-16 mb-20">
         <div className="text-center mb-12 fade-in">
-          <div className="text-5xl mb-4 text-[#722F37] bounce-animation">👨‍👩‍👧‍👦</div>
           <h3 className="text-3xl md:text-4xl font-bold text-[#722F37] mb-4 highlight">What Parents Say</h3>
           <div className="w-24 h-1 bg-gradient-to-r from-[#722F37] to-[#722F37] mx-auto rounded-full"></div>
         </div>

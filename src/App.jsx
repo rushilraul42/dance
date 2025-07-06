@@ -4,14 +4,12 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Performances from './components/Performances';
 import Events from './components/Events';
-import Insights from './components/Insights';
 import Footer from './components/Footer';
 import Register from './components/Register';
 import Achievements from './components/Achievements';
 import Awards from './components/Awards';
 import DanceSchool from './components/DanceSchool';
-import DanceInsights from './components/DanceInsights';
-
+import Gallery from './components/Gallery';
 import './index.css';
 
 function App() {
@@ -46,14 +44,13 @@ function App() {
                   <Performances />
                   <Achievements />
                   <Events />
-                  <Insights />
                 </div>
               }
             />
             <Route path="/my-journey/performances" element={<Performances />} />
             <Route path="/my-journey/awards" element={<Awards />} />
             <Route path="/my-journey/school" element={<DanceSchool />} />
-            <Route path="/my-journey/insights" element={<DanceInsights />} />
+            <Route path="/my-journey/insights" element={<Gallery />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </main>

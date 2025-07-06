@@ -42,11 +42,8 @@ const Register = () => {
           </h3>
           <ul className="text-left space-y-3 text-lg">
             {[
-              'Expert instruction from certified professionals',
+              'Expert instruction from certified professional',
               'Personalized attention and guidance',
-              'Access to exclusive workshops and events',
-              'Supportive community of fellow dancers',
-              'Performance opportunities',
             ].map((benefit, index) => (
               <li
                 key={index}
@@ -92,7 +89,7 @@ const Register = () => {
         >
           Questions? Contact us at{' '}
           <span className="font-semibold" style={{ color: '#722F37' }}>
-            info@dancestudio.com
+            
           </span>
         </p>
       </div>

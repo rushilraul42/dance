@@ -196,7 +196,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
             style={{ lineHeight: 1.1 }}
           >
-            <span style={{ fontFamily: 'Great Vibes, cursive', color: '#ECE7E2', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '1px' }}>Anushkaa</span>
+            <span style={{ fontFamily: 'Great Vibes, cursive', color: '#ECE7E2', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '1px' }}>anushkaa</span>
             <span style={{ fontFamily: 'Great Vibes, cursive', color: '#ECE7E2', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '1px', marginTop: '-0.3em' }}>Ramanatan</span>
           </Link>
 
@@ -209,7 +209,7 @@ const Header = () => {
                   className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold"
                   style={{ color: '#EFDFBB', background: 'transparent' }}
                 >
-                  <span className="text-base">🏠</span>
+                  
                   Home
                 </Link>
               </li>
@@ -229,7 +229,7 @@ const Header = () => {
                     <li><Link to="/my-journey/performances" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Performances</Link></li>
                     <li><Link to="/my-journey/awards" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Awards and Honours</Link></li>
                     <li><Link to="/my-journey/school" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Dance School</Link></li>
-                    <li><Link to="/my-journey/insights" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Dance Insights</Link></li>
+                    <li><Link to="/my-journey/insights" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Gallery</Link></li>
                   </ul>
                 </div>
               </li>

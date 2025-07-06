@@ -10,15 +10,14 @@ const awards = [
 
 const honoursImages = [
   '/h0.jpg',
-  '/h1.jpg',
   '/h2.jpg'
 ];
 
 const Awards = () => (
-  <section style={{ background: '#222', color: '#ECE7E2', position: 'relative', overflow: 'hidden' }} className="pt-0 py-20 mt-20">
+  <section style={{ background: '#222', color: '#ECE7E2', position: 'relative', overflow: 'hidden' }} className="pt-20 py-20 mt-20 md:min-h-screen">
     {/* Blurred background image */}
     <img
-      src="/award.jpg"
+      src={window.innerWidth >= 768 ? "/awardpc.jpg" : "/award.jpg"}
       alt="Awards Background"
       style={{
         position: 'absolute',
@@ -29,7 +28,7 @@ const Awards = () => (
         objectFit: 'cover',
         objectPosition: 'center',
         zIndex: 0,
-        filter: window.innerWidth < 768 ? ' brightness(0.5)' : 'blur(0.7px) brightness(0.5)',
+        filter: window.innerWidth < 768 ? ' brightness(0.7)' : ' brightness(0.7)',
         opacity: 0.6,
         pointerEvents: 'none',
       }}
@@ -55,7 +54,7 @@ const Mentions = () => {
   const [modalImg, setModalImg] = React.useState(null);
 
   return (
-    <section style={{ background: '#EFDFBB', position: 'relative', overflow: 'visible', marginTop: '4.25rem', paddingBottom: '5rem' }}>
+    <section style={{ background: '#EFDFBB', position: 'relative', overflow: 'visible', paddingBottom: '5rem' }} className="py-10"> 
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-8 fade-in">
           <h3 className="text-4xl md:text-5xl font-bold mb-6 highlight" style={{ color: '#EFDFBB' }}>Mentions</h3>
