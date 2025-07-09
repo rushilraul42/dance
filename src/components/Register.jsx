@@ -87,7 +87,7 @@ const Register = () => {
           className="mt-6 fade-in"
           style={{ color: '#0C0C0C', animationDelay: '1.4s' }}
         >
-          Questions? Contact us at{' '}
+          Questions? Contact us at{'abhinitaschoolofdance@gmail.com '}
           <span className="font-semibold" style={{ color: '#722F37' }}>
             
           </span>

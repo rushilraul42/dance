@@ -38,6 +38,14 @@ const Header = () => {
           backgroundColor: '#EFDFBB', 
           margin: '6px 0', 
           transition: '.3s',
+          opacity: navOpen ? 0 : 1
+        }}></div>
+        <div className="bread" style={{ 
+          width: 30, 
+          height: 3, 
+          backgroundColor: '#EFDFBB', 
+          margin: '6px 0', 
+          transition: '.3s',
           transform: navOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none'
         }}></div>
       </div>
@@ -201,13 +209,13 @@ const Header = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:block">
-            <ul className="flex gap-8">
+          <nav className="hidden md:block ml-auto mr-4">
+            <ul className="flex gap-6 justify-end">
               <li>
                 <Link 
                   to="/"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold"
-                  style={{ color: '#EFDFBB', background: 'transparent' }}
+                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
                 >
                   
                   Home
@@ -216,30 +224,28 @@ const Header = () => {
               <li style={{animationDelay: '0.1s', position: 'relative'}}>
                 <div className="group relative">
                   <button
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold"
-                    style={{ color: '#EFDFBB', background: 'transparent' }}
+                    className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                    style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <span className="text-base">🧭</span>
                     My Journey
                     <svg className="ml-2 w-4 h-4 inline-block" fill="none" stroke="#EFDFBB" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                   </button>
                   {/* Dropdown menu */}
-                  <ul style={{ background: '#722F37', border: '1px solid #EFDFBB' }} className="absolute left-0 mt-2 w-56 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-30">
-                    <li><Link to="/my-journey/performances" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Performances</Link></li>
-                    <li><Link to="/my-journey/awards" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Awards and Honours</Link></li>
-                    <li><Link to="/my-journey/school" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Dance School</Link></li>
-                    <li><Link to="/my-journey/insights" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent' }}>Gallery</Link></li>
+                  <ul style={{ background: '#722F37', border: '1px solid #EFDFBB' }} className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-30">
+                    <li><Link to="/my-journey/performances" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Performances</Link></li>
+                    <li><Link to="/my-journey/awards" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Awards and Honours</Link></li>
+                    <li><Link to="/my-journey/school" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Dance School</Link></li>
+                    <li><Link to="/my-journey/insights" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Gallery</Link></li>
                   </ul>
                 </div>
               </li>
               <li style={{animationDelay: '0.2s'}}>
                 <Link 
                   to="/register"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold"
-                  style={{ color: '#EFDFBB', background: 'transparent' }}
+                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
                 >
-                  <span className="text-base">👤</span>
                   Register
                 </Link>
               </li>

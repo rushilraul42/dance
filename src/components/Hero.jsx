@@ -41,8 +41,8 @@ const Hero = () => {
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#EFDFBB' }}>
-      {/* Carousel: take more space on mobile, nearly full screen */}
-      <div className="relative w-full h-[92vh] sm:h-[80vh] md:h-[90vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
+      {/* Mobile Carousel */}
+      <div className="block md:hidden relative w-full h-[92vh] sm:h-[80vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
         <button
           onClick={prevSlide}
           className="hidden sm:block absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-[#4A7766]/90 hover:bg-[#C59C79] hover:text-[#4A7766] text-[#ECE7E2] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover-lift"
@@ -55,7 +55,7 @@ const Hero = () => {
           alt={`Performance ${current + 1}`}
           className="w-full h-full select-none transition-all duration-700 ease-in-out scale-in"
           style={{
-            objectFit: window.innerWidth < 768 ? 'cover' : 'contain',
+            objectFit: 'cover',
             objectPosition: 'center',
             maxHeight: '100%',
             minHeight: '320px',
@@ -70,7 +70,7 @@ const Hero = () => {
         >
           <span className="text-xl font-bold">&#8594;</span>
         </button>
-        {/* Dots for all screens, but overlayed on image for mobile */}
+        {/* Dots for mobile only */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
           {images.map((_, idx) => (
             <button
@@ -85,6 +85,22 @@ const Hero = () => {
             />
           ))}
         </div>
+      </div>
+
+      {/* Desktop Static Image */}
+      <div className="hidden md:block relative w-full h-[90vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl mt-20">
+        <img
+          src="/land.jpg"
+          alt="Dance Performance"
+          className="w-full h-full select-none scale-in"
+          style={{
+            objectFit: 'contain',
+            objectPosition: 'center',
+            maxHeight: '100%',
+            minHeight: '320px',
+            opacity: 1,
+          }}
+        />
       </div>
       
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}

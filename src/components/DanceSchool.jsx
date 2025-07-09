@@ -18,7 +18,7 @@ const DanceSchool = () => (
           loop
           playsInline
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          style={{ filter: 'brightness(1.3)' }}
+          style={{ filter: 'brightness(1.7)' }}
         >
           <source src="/1.mp4" type="video/mp4" />
         </video>
@@ -38,7 +38,7 @@ const DanceSchool = () => (
         </p>
 
         <p className="relative z-10 fade-in text-white font-semibold" style={{ animationDelay: '0.3s', fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
-          What makes Abhinita truly special is its <span className="text-white font-semibold">warm and lively classroom environment</span>. While students are trained with discipline and structure, the classes are fun, engaging, and thoughtfully designed to spark creativity and passion.
+          What makes Abhinita School Of Dance truly special is its <span className="text-white font-semibold">warm and lively classroom environment</span>. While students are trained with discipline and structure, the classes are fun, engaging, and thoughtfully designed to spark creativity and passion.
         </p>
 
         <p className="relative z-10 fade-in text-center bg-[#11111]/40 p-6 rounded-2xl border border-[#722F37]/30 text-white font-black" style={{ animationDelay: '0.4s', fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
@@ -58,10 +58,8 @@ const DanceSchool = () => (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Review 1 */}
           <div className="bg-[#722F37] p-6 rounded-2xl border border-[#722F37]/30 fade-in" style={{ animationDelay: '0.5s' }}>
-            <div className="flex items-center mb-4">
-              <div className="text-[#EFDFBB] text-lg">★★★★★</div>
-            </div>
-            <p className="text-[#EFDFBB] leading-relaxed mb-4 italic">
++
++            <p className="text-[#EFDFBB] leading-relaxed mb-4 italic">
               "Anushka is not only an incredibly graceful dancer but also teaches dance to a group of girls under 10, including my daughter. She is patient, understanding, and deeply dedicated to her students. Despite the many dance academies in the area, Anushka's humble and disciplined approach to the art form sets her apart. I wholeheartedly recommend her to anyone seeking a Bharatanatyam instructor."
             </p>
             <p className="text-[#EFDFBB] font-semibold text-right">- Amitha Nayak</p>
@@ -69,9 +67,6 @@ const DanceSchool = () => (
 
           {/* Review 2 */}
           <div className="bg-[#722F37] p-6 rounded-2xl border border-[#722F37]/30 fade-in" style={{ animationDelay: '0.6s' }}>
-            <div className="flex items-center mb-4">
-              <div className="text-[#EFDFBB] text-lg">★★★★★</div>
-            </div>
             <p className="text-[#EFDFBB] leading-relaxed mb-4 italic">
               "Anushkaa has been learning music from me for the past 5 years. She is not only a good Bharatanatyam dancer but also good at Carnatic music. She takes classes of small children under my guidance. She is very good and teaches them with patience and love. Recently she has given her music exam and has passed with flying colours."
             </p>
@@ -80,9 +75,6 @@ const DanceSchool = () => (
 
           {/* Review 3 */}
           <div className="bg-[#722F37] p-6 rounded-2xl border border-[#722F37]/30 fade-in" style={{ animationDelay: '0.7s' }}>
-            <div className="flex items-center mb-4">
-              <div className="text-[#EFDFBB] text-lg">★★★★★</div>
-            </div>
             <p className="text-[#EFDFBB] leading-relaxed mb-4 italic">
               "My daughter has been learning dance online from Anushka for the past 2-3 years and she has been a wonderful teacher, especially teaching with so much of patience. I would really recommend her and wish her Abhinita School of Dance grows every year with more students. My best wishes to her 👍"
             </p>
@@ -91,9 +83,6 @@ const DanceSchool = () => (
 
           {/* Review 4 */}
           <div className="bg-[#722F37] p-6 rounded-2xl border border-[#722F37]/30 fade-in" style={{ animationDelay: '0.8s' }}>
-            <div className="flex items-center mb-4">
-              <div className="text-[#EFDFBB] text-lg">★★★★★</div>
-            </div>
             <p className="text-[#EFDFBB] leading-relaxed mb-4 italic">
               "My daughter is learning bharatnatyam from anushka. She is a passionate teacher and my daughter loves her class and eagerly waits for the class which is not usual with her. She engages them very patiently which is very much required with kids. Looking forward for a great bharatnatyam dancer in my daughter."
             </p>
@@ -102,9 +91,6 @@ const DanceSchool = () => (
 
           {/* Review 5 */}
           <div className="bg-[#722F37] p-6 rounded-2xl border border-[#722F37]/30 fade-in" style={{ animationDelay: '0.9s' }}>
-            <div className="flex items-center mb-4">
-              <div className="text-[#EFDFBB] text-lg">★★★★★</div>
-            </div>
             <p className="text-[#EFDFBB] leading-relaxed mb-4 italic">
               "I wish to extend my heartfelt thanks for your patience to handle my 5yr old kid and for sharing your passion with her. Personal attention and lot of patience with utmost grace. My daughter is in love with this dance form and her dance teacher. Thank you Anushka for bringing such a powerful change. Must recommend."
             </p>
@@ -113,9 +99,6 @@ const DanceSchool = () => (
 
           {/* Review 6 */}
           <div className="bg-[#722F37] p-6 rounded-2xl border border-[#722F37]/30 fade-in" style={{ animationDelay: '1.0s' }}>
-            <div className="flex items-center mb-4">
-              <div className="text-[#EFDFBB] text-lg">★★★★★</div>
-            </div>
             <p className="text-[#EFDFBB] leading-relaxed mb-4 italic">
               "Anushkaa is an excellent, graceful, most expressive dancer whose performance totally mesmerises the audience watching her. She's definitely a trustworthy teacher whose knowledge and legacy should surely be passed on to the next generation."
             </p>
@@ -124,13 +107,10 @@ const DanceSchool = () => (
 
           {/* Review 7 */}
           <div className="bg-[#722F37] p-6 rounded-2xl border border-[#722F37]/30 fade-in md:col-span-2" style={{ animationDelay: '1.1s' }}>
-            <div className="flex items-center justify-center mb-4">
-              <div className="text-[#EFDFBB] text-lg">★★★★★</div>
-            </div>
             <p className="text-[#EFDFBB] leading-relaxed mb-4 italic text-center max-w-3xl mx-auto">
               "Anushka has been practicing bharathanatyam for almost 2 decades. Not only she is an academically qualified professional, she has many attributes of a good teacher such as discipline, passion towards the art, a keen sense for helping students to learn quickly and inspiring young ones to take up dancing as a profession as well as a passion."
             </p>
-            <p className="text-[#EFDFBB] font-semibold text-center">- Akhila</p>
+            <p className="text-[#EFDFBB] font-semibold text-right md:text-center">- Akhila</p>
           </div>
         </div>
       </div>

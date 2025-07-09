@@ -1,11 +1,11 @@
 import React from "react";
 
 const awards = [
-  "Nalanda 'Academic Excellence' award for rank in 5 consecutive years",
-  "Nalanda 'Nritya Nipuna', 2025",
-  "Vasudev Nrutya Kala Manch - All India National Dance Competition - 2nd Prize",
-  "Akhil Natarajam Sanskrut Sangh - Online Dance Competition (Season 3) - 1st Prize",
-  "'Visions Fest', SIES College - 1st Prize"
+  "Nalanda 'Academic Excellence' award for 1st rank in 5 consecutive years.",
+  "Nalanda 'Nritya Nipuna', 2025.",
+  "Vasudev Nrutya Kala Manch - All India National Dance Competition - 2nd Prize.",
+  "Akhil Natarajam Sanskrut Sangh - Online Dance Competition (Season 3) - 1st Prize.",
+  "'Visions Fest', SIES College - 1st Prize."
 ];
 
 const honoursImages = [
