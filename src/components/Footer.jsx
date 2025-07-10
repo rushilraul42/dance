@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer style={{ background: 'linear-gradient(135deg, #722F37 0%, #5a2529 100%)', color: '#EFDFBB', padding: '3rem 0 2rem 0', borderTop: '2px solid #EFDFBB/20' }}>
+    <footer style={{ background: 'linear-gradient(135deg, #722F37 , #5a2529 100%)', color: '#EFDFBB', padding: '3rem 0 2rem 0', borderTop: '2px solid #EFDFBB/20' }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-3 gap-8 items-start mb-8">

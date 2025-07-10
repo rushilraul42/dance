@@ -91,17 +91,26 @@ const Hero = () => {
       <div className="hidden md:flex relative w-full h-[90vh] max-h-[900px] items-center justify-between overflow-hidden bg-[#EFDFBB] mt-20">
         {/* Left side content area - 40% width */}
         <div className="w-2/5 h-full flex items-center justify-center px-8">
-          {/* Content can be added here if needed */}
+          <div className="flex items-center justify-center w-full h-full">
+            <img
+              src="/logo.png"
+              alt="Anushkaa Ramanatan Logo"
+              className="max-w-full max-h-full object-contain"
+              style={{
+                filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.3))',
+              }}
+            />
+          </div>
         </div>
         
         {/* Right side image - 60% width */}
-        <div className="w-3/5 h-full flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
+        <div className="w-3/5 h-full flex items-center justify-center overflow-hidden shadow-2xl" style={{ backgroundColor: '#F5F5DC' }}>
           <img
             src="/land.jpg"
             alt="Dance Performance"
             className="w-full h-full select-none scale-in"
             style={{
-              objectFit: 'contain',
+              objectFit: 'cover',
               objectPosition: 'center',
               maxHeight: '100%',
               minHeight: '320px',
@@ -112,11 +121,12 @@ const Hero = () => {
       </div>
       
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center px-4 sm:px-8 my-8">
+      <div className="w-full" style={{ background: 'linear-gradient(135deg, #722F37 0%,rgb(90, 33, 38) 100%)', color: '#F5F5DC' }}>
+        <div className="max-w-xl mx-auto flex flex-col items-center px-4 sm:px-8 py-16">
         <h1
           className="text-4xl md:text-5xl font-bold mb-4 text-center"
           style={{
-            color: '#722F37',
+            color: '#F5F5DC',
             fontFamily: 'Playfair Display, serif',
             fontStyle: 'italic',
           }}
@@ -124,7 +134,7 @@ const Hero = () => {
           Anushkaa Ramanatan
         </h1>
 
-        <p className="text-base md:text-lg mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'EB Garamond, serif', letterSpacing: '1px', fontWeight: 500, color: '#0C0C0C' }}>
+        <p className="text-base md:text-lg mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'Lucida Calligraphy, cursive', letterSpacing: '1px', fontWeight: 500, color: '#F5F5DC' }}>
           {showFullDesc ? (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
@@ -135,22 +145,23 @@ const Hero = () => {
           ) : (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
-              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'EB Garamond, serif', color: '#0C0C0C' }}>Read more</button>
+              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'Lucida Calligraphy, cursive', color: '#F5F5DC' }}>Read more</button>
             </>
           )}
         </p>
         {showFullDesc && (
-          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'EB Garamond, serif', color: '#0C0C0C' }}>Show less</button>
+          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'Lucida Calligraphy, cursive', color: '#F5F5DC' }}>Show less</button>
         )}
         <a
           href="/ArtisteBiography.pdf"
           download
           className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl"
-          style={{ backgroundColor: '#722F37', color: '#EFDFBB', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
+          style={{ backgroundColor: '#F5F5DC', color: '#722F37', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
         >
           <span className="text-xl">📄</span>
           Resume
         </a>
+        </div>
       </div>
     </section>
   );
