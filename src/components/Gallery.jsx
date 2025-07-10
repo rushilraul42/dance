@@ -1,6 +1,6 @@
 const Gallery = () => {
   const galleryImages = [
-    { src: '/gallery/g1.jpg', alt: 'Gallery Image 1' },
+    { src: '/gallery/g1.jpg', alt: '"Pavitra Tulsi"- performed with renowned dancer & choreographer Sandip Soparrkar.' },
     { src: '/gallery/g2.jpg', alt: 'As a judge at "Namo Chashak", 2024.' },
     { src: '/gallery/g3.jpg', alt: 'With Guru G. Venu at "Navarasotsava 2024".' },
     { src: '/gallery/g4.jpg', alt: '"Annual Day 2025" - Proud 3rd Year teacher at Nalanda Dance Research Centre.' },
@@ -25,7 +25,7 @@ const Gallery = () => {
           <div className="w-24 h-1 mx-auto rounded-full" style={{ background: '#722F37' }}></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-16 lg:gap-20">
           {/* Left Column */}
           <div className="flex flex-col gap-8">
             {galleryImages.filter((_, index) => index % 2 === 0).map((image, index) => (

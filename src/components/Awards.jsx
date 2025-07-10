@@ -39,7 +39,7 @@ const Awards = () => (
         <h2 className="text-4xl md:text-5xl font-bold mb-4 highlight" style={{ color: '#ECE7E2' }}>Awards</h2>
         <div className="w-24 h-1 mx-auto rounded-full" style={{ background: '#ECE7E2' }}></div>
       </div>
-      <ul className="space-y-6 text-lg mb-16" style={{ fontFamily: 'Lucida Calligraphy, Narziss, serif', fontStyle: 'italic', letterSpacing: '1px', fontWeight: 400, textAlign: 'center' }}>
+      <ul className="space-y-6 text-lg md:text-3xl mb-16" style={{ fontFamily: 'Lucida Calligraphy, Narziss, serif', fontStyle: 'italic', letterSpacing: '1px', fontWeight: 400, textAlign: 'center' }}>
         {awards.map((item, idx) => (
           <li key={idx} className="fade-in" style={{ animationDelay: `${idx * 0.1}s`, color: '#ECE7E2', display: 'block' }}>
             {item}

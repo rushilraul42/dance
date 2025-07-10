@@ -88,19 +88,27 @@ const Hero = () => {
       </div>
 
       {/* Desktop Static Image */}
-      <div className="hidden md:block relative w-full h-[90vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl mt-20">
-        <img
-          src="/land.jpg"
-          alt="Dance Performance"
-          className="w-full h-full select-none scale-in"
-          style={{
-            objectFit: 'contain',
-            objectPosition: 'center',
-            maxHeight: '100%',
-            minHeight: '320px',
-            opacity: 1,
-          }}
-        />
+      <div className="hidden md:flex relative w-full h-[90vh] max-h-[900px] items-center justify-between overflow-hidden bg-[#EFDFBB] mt-20">
+        {/* Left side content area - 40% width */}
+        <div className="w-2/5 h-full flex items-center justify-center px-8">
+          {/* Content can be added here if needed */}
+        </div>
+        
+        {/* Right side image - 60% width */}
+        <div className="w-3/5 h-full flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
+          <img
+            src="/land.jpg"
+            alt="Dance Performance"
+            className="w-full h-full select-none scale-in"
+            style={{
+              objectFit: 'contain',
+              objectPosition: 'center',
+              maxHeight: '100%',
+              minHeight: '320px',
+              opacity: 1,
+            }}
+          />
+        </div>
       </div>
       
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}

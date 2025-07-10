@@ -177,7 +177,7 @@ const Header = () => {
               fontWeight: '500',
               fontFamily: 'Lucida Calligraphy, cursive',
               fontStyle: 'italic'
-            }} onClick={() => setNavOpen(false)}>Dance Insights</Link>
+            }} onClick={() => setNavOpen(false)}>Gallery</Link>
           </li>
           <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
             <Link to="/register" style={{ 
@@ -196,7 +196,7 @@ const Header = () => {
       </nav>
 
       {/* Keep the rest of your header (logo, nav, etc.) as before, but hide when navOpen */}
-      <div className="max-w-7xl mx-auto px-4" style={{ filter: navOpen ? 'blur(8px)' : 'none', pointerEvents: navOpen ? 'none' : 'auto', transition: 'filter 0.3s' }}>
+      <div className="max-w-9xl mx-auto px-4" style={{ filter: navOpen ? 'blur(8px)' : 'none', pointerEvents: navOpen ? 'none' : 'auto', transition: 'filter 0.3s' }}>
         <div className="flex justify-between items-center py-4 relative">
           <Link 
             to="/" 
@@ -217,30 +217,46 @@ const Header = () => {
                   className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
                   style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
                 >
-                  
                   Home
                 </Link>
               </li>
-              <li style={{animationDelay: '0.1s', position: 'relative'}}>
-                <div className="group relative">
-                  <button
-                    className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                    style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    My Journey
-                    <svg className="ml-2 w-4 h-4 inline-block" fill="none" stroke="#EFDFBB" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                  </button>
-                  {/* Dropdown menu */}
-                  <ul style={{ background: '#722F37', border: '1px solid #EFDFBB' }} className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-200 z-30">
-                    <li><Link to="/my-journey/performances" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Performances</Link></li>
-                    <li><Link to="/my-journey/awards" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Awards and Honours</Link></li>
-                    <li><Link to="/my-journey/school" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Dance School</Link></li>
-                    <li><Link to="/my-journey/insights" className="block px-6 py-3 hover:bg-[#5a2529] transition-colors duration-200" style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none', textDecoration: 'none' }}>Gallery</Link></li>
-                  </ul>
-                </div>
+              <li>
+                <Link 
+                  to="/my-journey/performances"
+                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
+                >
+                  Performances
+                </Link>
               </li>
-              <li style={{animationDelay: '0.2s'}}>
+              <li>
+                <Link 
+                  to="/my-journey/awards"
+                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
+                >
+                  Awards and Honours
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/my-journey/school"
+                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
+                >
+                  Dance School
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/my-journey/insights"
+                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li>
                 <Link 
                   to="/register"
                   className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
@@ -292,7 +308,7 @@ const Header = () => {
                     <li><Link to="/my-journey/performances" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Performances</Link></li>
                     <li><Link to="/my-journey/awards" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Awards and Honours</Link></li>
                     <li><Link to="/my-journey/school" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Dance School</Link></li>
-                    <li><Link to="/my-journey/insights" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Dance Insights</Link></li>
+                    <li><Link to="/my-journey/insights" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Gallery</Link></li>
                   </ul>
                 )}
               </li>
