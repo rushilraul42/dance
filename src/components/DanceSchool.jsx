@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-const DanceSchool = () => (
+const DanceSchool = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // Try to play video on component mount
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log('Video autoplay failed:', error);
+          // Fallback: show background image instead
+          const fallbackDiv = document.querySelector('.video-fallback');
+          if (fallbackDiv) {
+            fallbackDiv.style.display = 'block';
+            video.style.display = 'none';
+          }
+        });
+      }
+    }
+  }, []);
+
+  return (
   <>
     <section style={{ background: '#EFDFBB', color: '#722F37' }} className="pt-20 mt-20 pb-20">
     <div className="max-w-4xl mx-auto px-4">
       <div className="text-center mb-12 fade-in">
         <div className="text-5xl mb-4 text-[#722F37] bounce-animation">🏛️</div>
-        <h2 className="text-4xl md:text-5xl font-bold text-[#722F37] mb-4 highlight">Abhinita School of Dance</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 highlight" style={{ color: '#722F37' }}>Abhinita School of Dance</h2>
         <div className="w-24 h-1 bg-gradient-to-r from-[#722F37] to-[#722F37] mx-auto rounded-full"></div>
       </div>
 
@@ -14,15 +36,29 @@ const DanceSchool = () => (
       <div className="relative space-y-8 text-lg leading-relaxed mt-8 p-8 rounded-2xl overflow-hidden border-2 border-[#722F37]">
         {/* Background Video */}
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           style={{ filter: 'brightness(1.7)' }}
         >
           <source src="/1.mp4" type="video/mp4" />
+          {/* Fallback image for devices that don't support video */}
+          Your browser does not support the video tag.
         </video>
+
+        {/* Fallback background image for mobile devices */}
+        <div 
+          className="video-fallback absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
+          style={{
+            backgroundImage: 'url("/display.jpg")',
+            filter: 'brightness(1.2)',
+            display: 'none'
+          }}
+        ></div>
 
         {/* Dark overlay for better text readability */}
         <div className="absolute top-0 left-0 w-full h-full bg-black/70 bg-opacity-80 z-1"></div>
@@ -123,6 +159,7 @@ const DanceSchool = () => (
     </div>
   </section>
   </>
-);
+  );
+};
 
 export default DanceSchool;
