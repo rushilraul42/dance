@@ -44,7 +44,7 @@ const DanceSchool = () => {
       
       if (isIOS) {
         // For iOS devices, show fallback image immediately
-        const fallbackDiv = document.querySelector('.video-fallback');
+        const fallbackDiv = video.parentElement.querySelector('.video-fallback');
         if (fallbackDiv) {
           fallbackDiv.style.display = 'block';
           video.style.display = 'none';
@@ -56,7 +56,7 @@ const DanceSchool = () => {
           playPromise.catch(error => {
             console.log('Video autoplay failed:', error);
             // Fallback: show background image instead
-            const fallbackDiv = document.querySelector('.video-fallback');
+            const fallbackDiv = video.parentElement.querySelector('.video-fallback');
             if (fallbackDiv) {
               fallbackDiv.style.display = 'block';
               video.style.display = 'none';
@@ -110,7 +110,7 @@ const DanceSchool = () => {
           className="video-fallback absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
           style={{
             backgroundImage: 'url("/display.jpg")',
-            filter: 'brightness(1.2)',
+            filter: 'brightness(1.7)',
             display: 'none'
           }}
         ></div>
