@@ -39,15 +39,33 @@ const DanceSchool = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      // Try to play video on all devices including iOS
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log('Video autoplay failed:', error);
-          // Only show fallback if video completely fails to load/play
-          // Remove iOS-specific fallback behavior
-        });
-      }
+      // Force video load and play for iOS Safari
+      video.load();
+      
+      const attemptPlay = () => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log('Video autoplay failed:', error);
+            // For iOS Safari, try playing again after a small delay
+            setTimeout(() => {
+              video.play().catch(e => console.log('Retry failed:', e));
+            }, 100);
+          });
+        }
+      };
+
+      // Try to play immediately
+      attemptPlay();
+
+      // Also try when video is loaded
+      video.addEventListener('loadeddata', attemptPlay);
+      video.addEventListener('canplay', attemptPlay);
+
+      return () => {
+        video.removeEventListener('loadeddata', attemptPlay);
+        video.removeEventListener('canplay', attemptPlay);
+      };
     }
   }, []);
 
@@ -79,9 +97,10 @@ const DanceSchool = () => {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           webkit-playsinline="true"
           controls={false}
+          poster="/display.jpg"
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           style={{ filter: 'brightness(1.7)' }}
         >
