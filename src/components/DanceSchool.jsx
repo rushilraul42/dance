@@ -39,30 +39,14 @@ const DanceSchool = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      // Check if device is iOS
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      
-      if (isIOS) {
-        // For iOS devices, show fallback image immediately
-        const fallbackDiv = video.parentElement.querySelector('.video-fallback');
-        if (fallbackDiv) {
-          fallbackDiv.style.display = 'block';
-          video.style.display = 'none';
-        }
-      } else {
-        // Try to play video on non-iOS devices
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.log('Video autoplay failed:', error);
-            // Fallback: show background image instead
-            const fallbackDiv = video.parentElement.querySelector('.video-fallback');
-            if (fallbackDiv) {
-              fallbackDiv.style.display = 'block';
-              video.style.display = 'none';
-            }
-          });
-        }
+      // Try to play video on all devices including iOS
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log('Video autoplay failed:', error);
+          // Only show fallback if video completely fails to load/play
+          // Remove iOS-specific fallback behavior
+        });
       }
     }
   }, []);
@@ -97,6 +81,7 @@ const DanceSchool = () => {
           playsInline
           preload="metadata"
           webkit-playsinline="true"
+          controls={false}
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           style={{ filter: 'brightness(1.7)' }}
         >
