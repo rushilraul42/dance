@@ -26,7 +26,20 @@ const images = [
 const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [showFullDesc, setShowFullDesc] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const timeoutRef = useRef(null);
+
+  // Check if desktop on mount and resize
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+    
+    return () => window.removeEventListener('resize', checkIsDesktop);
+  }, []);
 
   // Auto-advance carousel every 3 seconds
   useEffect(() => {
@@ -120,21 +133,66 @@ const Hero = () => {
         </div>
       </div>
       
+      {/* About Section - Partition between hero and description */}
+      <div className="w-full py-8" style={{ background: '#F5F5DC' }}>
+        <div className="max-w-4xl mx-auto flex items-center justify-center">
+          <div 
+            className="flex-1 h-px max-w-xs" 
+            style={{ background: 'linear-gradient(to right, transparent, #722F37, #722F37)' }}
+          ></div>
+          <h2 
+            className="px-8 text-3xl md:text-4xl font-bold tracking-widest"
+            style={{
+              color: '#722F37',
+              fontFamily: 'Lucida Calligraphy, cursive',
+              fontStyle: 'italic',
+              textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            }}
+          >
+            ABOUT
+          </h2>
+          <div 
+            className="flex-1 h-px max-w-xs" 
+            style={{ background: 'linear-gradient(to left, transparent, #722F37, #722F37)' }}
+          ></div>
+        </div>
+      </div>
+      
       {/* Description and Resume: further below the fold on mobile, visible on desktop */}
-      <div className="w-full" style={{ background: 'linear-gradient(135deg, #722F37 0%,rgb(90, 33, 38) 100%)', color: '#F5F5DC' }}>
-        <div className="max-w-xl mx-auto flex flex-col items-center px-4 sm:px-8 py-16">
-        <h1
-          className="text-4xl md:text-5xl font-bold mb-4 text-center"
-          style={{
-            color: '#F5F5DC',
-            fontFamily: 'Playfair Display, serif',
-            fontStyle: 'italic',
+      <div 
+        className="w-full" 
+        style={{ 
+          backgroundImage: 'url(/background/b2.PNG)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: isDesktop ? 'fixed' : 'scroll',
+          color: '#F5F5DC',
+          position: 'relative',
+          minHeight: '100vh'
+        }}
+      >
+        {/* Dark overlay for better text readability */}
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            backgroundColor: 'rgba(0, 0, 0, 0.5)'
           }}
-        >
+        ></div>
+        <div className="max-w-xl md:max-w-6xl mx-auto flex flex-col items-center px-4 sm:px-8 py-16 relative z-10">
+
+            <h1
+              className="text-4xl md:text-5xl font-bold mb-4 text-center"
+              style={{
+                color: '#F5F5DC',
+                fontFamily: 'Lucida Calligraphy, cursive',
+                fontStyle: 'italic',
+              }}
+            >
           Anushkaa Ramanatan
         </h1>
 
-        <p className="text-base md:text-lg mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'Lucida Calligraphy, cursive', letterSpacing: '1px', fontWeight: 500, color: '#F5F5DC' }}>
+        <p className="text-base md:text-2xl mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'Lucida Calligraphy, cursive', letterSpacing: '1px', fontWeight: 500, color: '#F5F5DC' }}>
           {showFullDesc ? (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>

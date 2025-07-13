@@ -200,12 +200,15 @@ const Header = () => {
         <div className="flex justify-between items-center py-4 relative">
           <Link 
             to="/" 
-            className="flex flex-col items-start gap-0 cursor-pointer"
+            className="flex items-center cursor-pointer"
             onClick={() => setIsMenuOpen(false)}
-            style={{ lineHeight: 1.1 }}
           >
-            <span style={{ fontFamily: 'Great Vibes, cursive', color: '#ECE7E2', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '1px' }}>anushkaa</span>
-            <span style={{ fontFamily: 'Great Vibes, cursive', color: '#ECE7E2', fontSize: '2.5rem', fontWeight: 400, letterSpacing: '1px', marginTop: '-0.3em' }}>Ramanatan</span>
+            <img 
+              src="/logo.png" 
+              alt="Anushkaa Ramanatan Logo" 
+              className="h-16 w-auto object-contain"
+              style={{ filter: 'brightness(1.1)' }}
+            />
           </Link>
 
           {/* Desktop Nav */}
