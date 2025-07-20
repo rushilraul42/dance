@@ -1,21 +1,69 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-// Add Google Fonts import for Great Vibes
+// Add local font import for Allura Regular
 if (typeof document !== 'undefined') {
-  const link = document.createElement('link');
-  link.href = 'https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap';
-  link.rel = 'stylesheet';
-  document.head.appendChild(link);
+  const style = document.createElement('style');
+  style.textContent = `
+    @font-face {
+      font-family: 'Allura Local';
+      src: url('/fonts/fonts/Allura-Regular.ttf') format('truetype'),
+           url('/fonts/fonts/Allura-Regular.ttf.woff') format('woff'),
+           url('/fonts/fonts/Allura-Regular.ttf.eot') format('embedded-opentype'),
+           url('/fonts/fonts/Allura-Regular.ttf.svg#Allura-Regular') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
+  // Handle scroll visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show header at top of page
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      }
+      // Show header when scrolling up, hide when scrolling down
+      else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+        // Close mobile menu when hiding header
+        setNavOpen(false);
+        setIsMenuOpen(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header style={{ background: '#722F37', borderBottom: '1px solid #ECE7E2', boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', zIndex: 1000 }} className="backdrop-blur fixed top-0 right-0 left-0 w-full transition-all duration-500" >
+    <header 
+      style={{ 
+        background: '#722F37', 
+        borderBottom: '1px solid #ECE7E2', 
+        boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', 
+        zIndex: 1000,
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+        transition: 'transform 0.3s ease-in-out'
+      }} 
+      className="backdrop-blur fixed top-0 right-0 left-0 w-full block md:hidden"
+    >
       {/* Hamburger Icon - only show on mobile */}
       <div
         className="md:hidden"
@@ -203,12 +251,20 @@ const Header = () => {
             className="flex items-center cursor-pointer"
             onClick={() => setIsMenuOpen(false)}
           >
-            <img 
-              src="/logo.png" 
-              alt="Anushkaa Ramanatan Logo" 
-              className="h-16 w-auto object-contain"
-              style={{ filter: 'brightness(1.1)' }}
-            />
+            <h1 
+              style={{ 
+                fontFamily: 'Allura Local, "Allura-Regular", cursive',
+                fontSize: '3.2rem',
+                color: '#EFDFBB',
+                margin: 0,
+                fontWeight: '600',
+                fontStyle: 'bold',
+                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                letterSpacing: '0.02em'
+              }}
+            >
+              Anushkaa Ramanatan
+            </h1>
           </Link>
 
           {/* Desktop Nav */}

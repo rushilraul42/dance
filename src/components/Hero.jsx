@@ -8,11 +8,206 @@ if (typeof document !== 'undefined') {
   playfairLink.rel = 'stylesheet';
   document.head.appendChild(playfairLink);
   
-  // Narziss font for description
-  const narzissLink = document.createElement('link');
-  narzissLink.href = 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap';
-  narzissLink.rel = 'stylesheet';
-  document.head.appendChild(narzissLink);
+  // Oregon local font for description
+  const oregonStyle = document.createElement('style');
+  oregonStyle.textContent = `
+    @font-face {
+      font-family: 'Oregon';
+      src: url('/fonts/oregon.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Epistle';
+      src: url('/fonts/fonts/Epistle-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Didonesque Display';
+      src: url('/fonts/FontsFree-Net-Didonesque-Display.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    /* Slideout Navigation Styles */
+    .slideout-nav {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0;
+      z-index: 1000;
+    }
+    
+    .slideout-nav::before,
+    .slideout-nav::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: width 600ms cubic-bezier(0.86, 0, 0.672, 1.003);
+      border-radius: 30px 0 0 30px;
+      height: 100vh;
+      z-index: -1;
+    }
+    
+    .slideout-nav::before {
+      width: var(--nav-bg-w, 0);
+      background-color: rgb(137, 75, 0);
+    }
+    
+    .slideout-nav::after {
+      width: var(--nav-bg-w-after, 0);
+      background-color: rgb(254, 154, 0);
+    }
+    
+    .slideout-nav:has([aria-expanded="true"]) {
+      --nav-bg-w: calc(100vw + 30px);
+      --nav-bg-w-after: calc(33vw + 30px);
+    }
+    
+    .slideout-nav > button {
+      appearance: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background-color: transparent;
+      color: #722F37;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      outline: none;
+    }
+    
+    .slideout-nav > button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    
+    .slideout-nav > button > svg path {
+      transition-property: color, scale, rotate;
+      transition-duration: 150ms;
+      transition-timing-function: ease-in-out;
+      transform-origin: center center;
+    }
+    
+    .slideout-nav > button:hover {
+      color: #722F37;
+    }
+    
+    .slideout-nav > button::before {
+      content: "Menu";
+      transition: color 150ms ease-in-out;
+      margin-right: 0.5rem;
+      font-family: 'Lucida Calligraphy', cursive;
+      font-style: italic;
+      font-size: 1.875rem;
+    }
+    
+    .slideout-nav > button[aria-expanded="true"] {
+      color: #722F37;
+    }
+    
+    .slideout-nav > button[aria-expanded="true"]::before {
+      content: "Close";
+    }
+    
+    .slideout-nav > button[aria-expanded="true"] > svg path:is(:nth-of-type(1), :nth-of-type(4)) {
+      scale: 0 1;
+    }
+    
+    .slideout-nav > button[aria-expanded="true"] > svg path:nth-of-type(2) {
+      rotate: -45deg;
+    }
+    
+    .slideout-nav > button[aria-expanded="true"] > svg path:nth-of-type(3) {
+      rotate: 45deg;
+    }
+    
+    .slideout-nav > ul {
+      position: absolute;
+      background-color: rgba(239, 223, 187, 0.95);
+      border-radius: 30px 0 0 30px;
+      overflow: hidden;
+      top: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      width: fit-content;
+      height: 100vh;
+      list-style: none;
+      transform: translateX(100%);
+      transition: transform 1000ms cubic-bezier(0.86, 0, 0.672, 1.003);
+    }
+    
+    .slideout-nav > ul[aria-hidden="false"] {
+      transform: translateX(0);
+    }
+    
+    .slideout-nav > ul > li {
+      padding: 0;
+      margin: 0;
+      overflow-y: clip;
+    }
+    
+    .slideout-nav > ul > li:nth-child(1) {
+      margin-top: 60px;
+    }
+    
+    .slideout-nav > ul > li > a {
+      font-family: 'Lucida Calligraphy', cursive;
+      font-style: italic;
+      letter-spacing: 0.05rem;
+      position: relative;
+      display: flex;
+      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      padding: 0.5rem 4rem 0.5rem 2rem;
+      text-decoration: none;
+      color: #722F37;
+      isolation: isolate;
+      transform: translateY(100%);
+      transition: transform 300ms ease-in-out;
+      transition-delay: calc(var(--i) * 50ms + 1000ms);
+    }
+    
+    .slideout-nav > ul[aria-hidden="false"] > li > a {
+      transform: translateY(0);
+    }
+    
+    .slideout-nav > ul > li > a > span {
+      display: block;
+      transition: transform 350ms ease-in-out;
+    }
+    
+    .slideout-nav > ul > li > a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: #722F37;
+      translate: 0 2lh;
+      z-index: -1;
+      transition: all 350ms ease-in-out;
+    }
+    
+    .slideout-nav > ul > li > a:hover > span {
+      transform: translateY(-2lh);
+      translate: 0 2lh;
+    }
+    
+    .slideout-nav > ul > li > a:hover::before {
+      translate: 0 0;
+    }
+    
+    /* Remove the wine line for Awards and Honours */
+    .slideout-nav > ul > li:nth-child(3) > a::before {
+      display: none;
+    }
+  `;
+  document.head.appendChild(oregonStyle);
 }
 
 const images = [
@@ -27,7 +222,9 @@ const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const timeoutRef = useRef(null);
+  const navRef = useRef(null);
 
   // Check if desktop on mount and resize
   useEffect(() => {
@@ -49,8 +246,40 @@ const Hero = () => {
     return () => clearTimeout(timeoutRef.current);
   }, [current]);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target) && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  // Close menu on escape key
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMenuOpen]);
+
   const prevSlide = () => setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   const nextSlide = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#EFDFBB' }}>
@@ -100,50 +329,75 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Desktop Static Image */}
-      <div className="hidden md:flex relative w-full h-[90vh] max-h-[900px] items-center justify-between overflow-hidden bg-[#EFDFBB] mt-20">
-        {/* Left side content area - 40% width */}
-        <div className="w-2/5 h-full flex items-center justify-center px-8">
-          <div className="flex items-center justify-center w-full h-full">
-            <img
-              src="/logo.png"
-              alt="Anushkaa Ramanatan Logo"
-              className="max-w-full max-h-full object-contain"
-              style={{
-                filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.3))',
-              }}
-            />
-          </div>
+      {/* Desktop Full Screen Hero */}
+      <div className="hidden md:flex relative w-full h-screen items-center justify-center overflow-hidden" 
+        style={{ 
+          backgroundImage: 'url(/background/desktopback.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Left side content - Name and greeting */}
+        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
+          {/* Artist Name */}
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light tracking-wider leading-tight drop-shadow-lg" style={{ color: '#722F37' }}>
+            <span className="block">ANUSHKAA</span>
+            <span className="block">RAMANATAN</span>
+          </h1>
+          
+          
+          
         </div>
-        
-        {/* Right side image - 60% width */}
-        <div className="w-3/5 h-full flex items-center justify-center overflow-hidden shadow-2xl" style={{ backgroundColor: '#F5F5DC' }}>
-          <img
-            src="/land.jpg"
-            alt="Dance Performance"
-            className="w-full h-full select-none scale-in"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
-              maxHeight: '100%',
-              minHeight: '320px',
-              opacity: 1,
-            }}
-          />
-        </div>
+
+        {/* Desktop Menu Button */}
+        <nav className="slideout-nav" ref={navRef}>
+          <button 
+            type="button" 
+            id="btn-nav-toggle" 
+            aria-expanded={isMenuOpen}
+            aria-controls="nav-menu" 
+            aria-label="Toggle navigation menu"
+            onClick={toggleMenu}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 6l16 0" />
+                <path d="M4 12l16 0" />
+                <path d="M4 12l16 0" />
+                <path d="M4 18l16 0" />
+              </g>
+            </svg>
+          </button>
+
+          <ul id="nav-menu" role="list" aria-labelledby="btn-nav-toggle" aria-hidden={!isMenuOpen}>
+            <li style={{ '--i': 1 }}><a href="/"><span>Home</span></a></li>
+            <li style={{ '--i': 2 }}><a href="/my-journey/performances"><span>Performances</span></a></li>
+            <li style={{ '--i': 3 }}><a href="/my-journey/awards"><span>Awards and Honours</span></a></li>
+            <li style={{ '--i': 4 }}><a href="/my-journey/school"><span>Dance School</span></a></li>
+            <li style={{ '--i': 5 }}><a href="/my-journey/insights"><span>Gallery</span></a></li>
+            <li style={{ '--i': 6 }}><a href="/register"><span>Register</span></a></li>
+          </ul>
+        </nav>
       </div>
       
-      {/* About Section - Partition between hero and description */}
-      <div className="w-full py-8" style={{ background: '#F5F5DC' }}>
-        <div className="max-w-4xl mx-auto flex items-center justify-center">
-          <div 
-            className="flex-1 h-px max-w-xs" 
-            style={{ background: 'linear-gradient(to right, transparent, #722F37, #722F37)' }}
-          ></div>
+      {/* Description and Resume: further below the fold on mobile, visible on desktop */}
+      <div 
+        className="w-full" 
+        style={{ 
+          background: '#722F37',
+          color: '#F5F5DC',
+          position: 'relative',
+          minHeight: '100vh'
+        }}
+      >
+        <div className="max-w-xl md:max-w-6xl mx-auto flex flex-col items-center px-4 sm:px-8 py-16 relative z-10">
+
+          {/* About Heading */}
           <h2 
-            className="px-8 text-3xl md:text-4xl font-bold tracking-widest"
+            className="text-4xl md:text-5xl font-bold tracking-widest mb-8 text-center"
             style={{
-              color: '#722F37',
+              color: '#F5F5DC',
               fontFamily: 'Lucida Calligraphy, cursive',
               fontStyle: 'italic',
               textShadow: '0 2px 4px rgba(0,0,0,0.1)'
@@ -151,48 +405,20 @@ const Hero = () => {
           >
             ABOUT
           </h2>
-          <div 
-            className="flex-1 h-px max-w-xs" 
-            style={{ background: 'linear-gradient(to left, transparent, #722F37, #722F37)' }}
-          ></div>
-        </div>
-      </div>
-      
-      {/* Description and Resume: further below the fold on mobile, visible on desktop */}
-      <div 
-        className="w-full" 
-        style={{ 
-          backgroundImage: 'url(/background/b2.PNG)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: isDesktop ? 'fixed' : 'scroll',
-          color: '#F5F5DC',
-          position: 'relative',
-          minHeight: '100vh'
-        }}
-      >
-        {/* Dark overlay for better text readability */}
-        <div 
-          className="absolute inset-0" 
-          style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.5)'
-          }}
-        ></div>
-        <div className="max-w-xl md:max-w-6xl mx-auto flex flex-col items-center px-4 sm:px-8 py-16 relative z-10">
 
             <h1
               className="text-4xl md:text-5xl font-bold mb-4 text-center"
               style={{
                 color: '#F5F5DC',
-                fontFamily: 'Lucida Calligraphy, cursive',
-                fontStyle: 'italic',
+                fontFamily: 'Epistle, serif',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
               }}
             >
-          Anushkaa Ramanatan
+          ANUSHKAA RAMANATAN
         </h1>
 
-        <p className="text-base md:text-2xl mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'Lucida Calligraphy, cursive', letterSpacing: '1px', fontWeight: 500, color: '#F5F5DC' }}>
+        <p className="text-lg md:text-3xl mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'Oregon, serif', letterSpacing: '1px', fontWeight: 400, color: '#F5F5DC' }}>
           {showFullDesc ? (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
@@ -203,12 +429,12 @@ const Hero = () => {
           ) : (
             <>
               Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
-              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'Lucida Calligraphy, cursive', color: '#F5F5DC' }}>Read more</button>
+              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'Oregon, serif', color: '#F5F5DC', fontSize: '1.1em' }}>Read more</button>
             </>
           )}
         </p>
         {showFullDesc && (
-          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'Lucida Calligraphy, cursive', color: '#F5F5DC' }}>Show less</button>
+          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'Oregon, serif', color: '#F5F5DC', fontSize: '1.1em' }}>Show less</button>
         )}
         <a
           href="/ArtisteBiography.pdf"

@@ -114,7 +114,7 @@ const DanceSchool = () => {
           className="video-fallback absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
           style={{
             backgroundImage: 'url("/display.jpg")',
-            filter: 'brightness(1.7)',
+            filter: 'brightness(1.5)',
             display: 'none'
           }}
         ></div>
