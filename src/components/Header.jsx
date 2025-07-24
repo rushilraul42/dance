@@ -24,7 +24,9 @@ const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   // Handle scroll visibility
   useEffect(() => {
@@ -53,17 +55,19 @@ const Header = () => {
   }, [lastScrollY]);
 
   return (
-    <header 
-      style={{ 
-        background: '#722F37', 
-        borderBottom: '1px solid #ECE7E2', 
-        boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', 
-        zIndex: 1000,
-        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-        transition: 'transform 0.3s ease-in-out'
-      }} 
-      className="backdrop-blur fixed top-0 right-0 left-0 w-full block md:hidden"
-    >
+    <>
+      {/* Mobile Header */}
+      <header 
+        style={{ 
+          background: '#722F37', 
+          borderBottom: '1px solid #ECE7E2', 
+          boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', 
+          zIndex: 1000,
+          transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+          transition: 'transform 0.3s ease-in-out'
+        }} 
+        className="backdrop-blur fixed top-0 right-0 left-0 w-full block md:hidden"
+      >
       {/* Hamburger Icon - only show on mobile */}
       <div
         className="md:hidden"
@@ -267,66 +271,6 @@ const Header = () => {
             </h1>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:block ml-auto mr-4">
-            <ul className="flex gap-6 justify-end">
-              <li>
-                <Link 
-                  to="/"
-                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/my-journey/performances"
-                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
-                >
-                  Performances
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/my-journey/awards"
-                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
-                >
-                  Awards and Honours
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/my-journey/school"
-                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
-                >
-                  Dance School
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/my-journey/insights"
-                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
-                >
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/register"
-                  className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                  style={{ color: '#EFDFBB', background: 'transparent', outline: 'none', border: 'none' }}
-                >
-                  Register
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
           {/* Off-canvas Mobile Nav - only for mobile */}
           <nav 
             className={`md:hidden fixed top-0 right-0 h-full w-3/4 max-w-xs bg-[#4A7766] shadow-lg z-50 transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
@@ -386,7 +330,173 @@ const Header = () => {
           </nav>
         </div>
       </div>
-    </header>
+      </header>
+
+      {/* Desktop Header */}
+      <header 
+        style={{ 
+          background: isHomePage ? 'transparent' : '#722F37', 
+          borderBottom: isHomePage ? 'none' : '1px solid #ECE7E2', 
+          boxShadow: isHomePage ? 'none' : '4px 0 24px 0 rgba(0,0,0,0.18)', 
+          zIndex: 1000,
+          transition: 'all 0.3s ease-in-out'
+        }} 
+        className="hidden md:block fixed top-0 right-0 left-0 w-full"
+      >
+        {/* Desktop sliding menu button */}
+        <div 
+          className="fixed top-4 right-4 z-50 cursor-pointer"
+          onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300"
+            style={{ 
+              background: desktopMenuOpen ? 'rgba(114, 47, 55, 0.9)' : 'rgba(114, 47, 55, 0.7)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
+            <span 
+              className="text-lg font-semibold transition-colors duration-300"
+              style={{ 
+                color: isHomePage ? 'white' : '#EFDFBB',
+                fontFamily: 'Lucida Calligraphy, cursive',
+                fontStyle: 'italic'
+              }}
+            >
+              {desktopMenuOpen ? 'Close' : 'Menu'}
+            </span>
+            <div className="flex flex-col gap-1">
+              <div 
+                className="w-6 h-0.5 transition-all duration-300"
+                style={{ 
+                  backgroundColor: isHomePage ? 'white' : '#EFDFBB',
+                  transform: desktopMenuOpen ? 'rotate(45deg) translate(2px, 2px)' : 'none'
+                }}
+              ></div>
+              <div 
+                className="w-6 h-0.5 transition-all duration-300"
+                style={{ 
+                  backgroundColor: isHomePage ? 'white' : '#EFDFBB',
+                  opacity: desktopMenuOpen ? 0 : 1
+                }}
+              ></div>
+              <div 
+                className="w-6 h-0.5 transition-all duration-300"
+                style={{ 
+                  backgroundColor: isHomePage ? 'white' : '#EFDFBB',
+                  transform: desktopMenuOpen ? 'rotate(-45deg) translate(2px, -2px)' : 'none'
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop sliding menu panel */}
+        <div 
+          className="fixed top-0 right-0 h-full transition-all duration-500 ease-in-out z-40"
+          style={{
+            width: desktopMenuOpen ? '300px' : '0px',
+            background: 'rgba(114, 47, 55, 0.95)',
+            backdropFilter: 'blur(10px)',
+            borderLeft: desktopMenuOpen ? '1px solid rgba(239, 223, 187, 0.3)' : 'none',
+            overflow: 'hidden'
+          }}
+        >
+          <nav className="pt-20 px-6">
+            <ul className="flex flex-col gap-4">
+              <li>
+                <Link 
+                  to="/"
+                  className="block px-4 py-3 text-lg font-semibold transition-colors duration-200 hover:text-white border-b border-opacity-30"
+                  style={{ 
+                    color: 'white',
+                    borderBottomColor: 'rgba(239, 223, 187, 0.3)',
+                    fontFamily: 'Lucida Calligraphy, cursive',
+                    fontStyle: 'italic'
+                  }}
+                  onClick={() => setDesktopMenuOpen(false)}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/my-journey/performances"
+                  className="block px-4 py-3 text-lg font-semibold transition-colors duration-200 hover:text-white border-b border-opacity-30"
+                  style={{ 
+                    color: 'white',
+                    borderBottomColor: 'rgba(239, 223, 187, 0.3)',
+                    fontFamily: 'Lucida Calligraphy, cursive',
+                    fontStyle: 'italic'
+                  }}
+                  onClick={() => setDesktopMenuOpen(false)}
+                >
+                  Performances
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/my-journey/awards"
+                  className="block px-4 py-3 text-lg font-semibold transition-colors duration-200 hover:text-white border-b border-opacity-30"
+                  style={{ 
+                    color: 'white',
+                    borderBottomColor: 'rgba(239, 223, 187, 0.3)',
+                    fontFamily: 'Lucida Calligraphy, cursive',
+                    fontStyle: 'italic'
+                  }}
+                  onClick={() => setDesktopMenuOpen(false)}
+                >
+                  Awards and Honours
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/my-journey/school"
+                  className="block px-4 py-3 text-lg font-semibold transition-colors duration-200 hover:text-white border-b border-opacity-30"
+                  style={{ 
+                    color: 'white',
+                    borderBottomColor: 'rgba(239, 223, 187, 0.3)',
+                    fontFamily: 'Lucida Calligraphy, cursive',
+                    fontStyle: 'italic'
+                  }}
+                  onClick={() => setDesktopMenuOpen(false)}
+                >
+                  Dance School
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/my-journey/insights"
+                  className="block px-4 py-3 text-lg font-semibold transition-colors duration-200 hover:text-white border-b border-opacity-30"
+                  style={{ 
+                    color: 'white',
+                    borderBottomColor: 'rgba(239, 223, 187, 0.3)',
+                    fontFamily: 'Lucida Calligraphy, cursive',
+                    fontStyle: 'italic'
+                  }}
+                  onClick={() => setDesktopMenuOpen(false)}
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/register"
+                  className="block px-4 py-3 text-lg font-semibold transition-colors duration-200 hover:text-white"
+                  style={{ 
+                    color: 'white',
+                    fontFamily: 'Lucida Calligraphy, cursive',
+                    fontStyle: 'italic'
+                  }}
+                  onClick={() => setDesktopMenuOpen(false)}
+                >
+                  Register
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </>
   );
 };
 

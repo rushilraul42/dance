@@ -211,11 +211,11 @@ if (typeof document !== 'undefined') {
 }
 
 const images = [
-  '/display2.jpg',
-  '/display5.jpg',
-  '/display4.jpg',
-  '/display.jpg',
-  '/display3.jpg',
+  '/display/display2.jpg',
+  '/display/display5.jpg',
+  '/display/display4.jpg',
+  '/display/display.jpg',
+  '/display/display3.jpg',
 ];
 
 const Hero = () => {
@@ -332,19 +332,33 @@ const Hero = () => {
       {/* Desktop Full Screen Hero */}
       <div className="hidden md:flex relative w-full h-screen items-center justify-center overflow-hidden" 
         style={{ 
-          backgroundImage: 'url(/background/desktopback.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          backgroundColor: '#EFDFBB'
         }}
       >
+        {/* Background Image - positioned on the right */}
+        <div 
+          className="absolute right-0 h-full"
+          style={{
+            top: '0',
+            width: '100%',
+            backgroundImage: 'url(/display/display3.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        ></div>
         {/* Left side content - Name and greeting */}
-        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="absolute left-2 top-8 z-10">
           {/* Artist Name */}
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light tracking-wider leading-tight drop-shadow-lg" style={{ color: '#722F37' }}>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light tracking-wider leading-tight drop-shadow-lg" style={{ color: 'white' }}>
             <span className="block">ANUSHKAA</span>
             <span className="block">RAMANATAN</span>
           </h1>
+          
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl font-bold tracking-widest mt-4" style={{ color: 'white', letterSpacing: '0.2em' }}>
+            BHARATANATYAM ARTISTE
+          </p>
           
           
           
