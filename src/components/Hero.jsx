@@ -29,186 +29,10 @@ if (typeof document !== 'undefined') {
       font-weight: normal;
       font-style: normal;
     }
-    
-    /* Slideout Navigation Styles */
-    .slideout-nav {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      padding: 0;
-      z-index: 1000;
-    }
-    
-    .slideout-nav::before,
-    .slideout-nav::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      transition: width 600ms cubic-bezier(0.86, 0, 0.672, 1.003);
-      border-radius: 30px 0 0 30px;
-      height: 100vh;
-      z-index: -1;
-    }
-    
-    .slideout-nav::before {
-      width: var(--nav-bg-w, 0);
-      background-color: rgb(137, 75, 0);
-    }
-    
-    .slideout-nav::after {
-      width: var(--nav-bg-w-after, 0);
-      background-color: rgb(254, 154, 0);
-    }
-    
-    .slideout-nav:has([aria-expanded="true"]) {
-      --nav-bg-w: calc(100vw + 30px);
-      --nav-bg-w-after: calc(33vw + 30px);
-    }
-    
-    .slideout-nav > button {
-      appearance: none;
-      border: none;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      background-color: transparent;
-      color: #722F37;
-      position: relative;
-      z-index: 2;
-      cursor: pointer;
-      outline: none;
-    }
-    
-    .slideout-nav > button:focus {
-      outline: none;
-      box-shadow: none;
-    }
-    
-    .slideout-nav > button > svg path {
-      transition-property: color, scale, rotate;
-      transition-duration: 150ms;
-      transition-timing-function: ease-in-out;
-      transform-origin: center center;
-    }
-    
-    .slideout-nav > button:hover {
-      color: #722F37;
-    }
-    
-    .slideout-nav > button::before {
-      content: "Menu";
-      transition: color 150ms ease-in-out;
-      margin-right: 0.5rem;
-      font-family: 'Lucida Calligraphy', cursive;
-      font-style: italic;
-      font-size: 1.875rem;
-    }
-    
-    .slideout-nav > button[aria-expanded="true"] {
-      color: #722F37;
-    }
-    
-    .slideout-nav > button[aria-expanded="true"]::before {
-      content: "Close";
-    }
-    
-    .slideout-nav > button[aria-expanded="true"] > svg path:is(:nth-of-type(1), :nth-of-type(4)) {
-      scale: 0 1;
-    }
-    
-    .slideout-nav > button[aria-expanded="true"] > svg path:nth-of-type(2) {
-      rotate: -45deg;
-    }
-    
-    .slideout-nav > button[aria-expanded="true"] > svg path:nth-of-type(3) {
-      rotate: 45deg;
-    }
-    
-    .slideout-nav > ul {
-      position: absolute;
-      background-color: rgba(239, 223, 187, 0.95);
-      border-radius: 30px 0 0 30px;
-      overflow: hidden;
-      top: 0;
-      right: 0;
-      margin: 0;
-      padding: 0;
-      width: fit-content;
-      height: 100vh;
-      list-style: none;
-      transform: translateX(100%);
-      transition: transform 1000ms cubic-bezier(0.86, 0, 0.672, 1.003);
-    }
-    
-    .slideout-nav > ul[aria-hidden="false"] {
-      transform: translateX(0);
-    }
-    
-    .slideout-nav > ul > li {
-      padding: 0;
-      margin: 0;
-      overflow-y: clip;
-    }
-    
-    .slideout-nav > ul > li:nth-child(1) {
-      margin-top: 60px;
-    }
-    
-    .slideout-nav > ul > li > a {
-      font-family: 'Lucida Calligraphy', cursive;
-      font-style: italic;
-      letter-spacing: 0.05rem;
-      position: relative;
-      display: flex;
-      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 3rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1;
-      padding: 0.5rem 4rem 0.5rem 2rem;
-      text-decoration: none;
-      color: #722F37;
-      isolation: isolate;
-      transform: translateY(100%);
-      transition: transform 300ms ease-in-out;
-      transition-delay: calc(var(--i) * 50ms + 1000ms);
-    }
-    
-    .slideout-nav > ul[aria-hidden="false"] > li > a {
-      transform: translateY(0);
-    }
-    
-    .slideout-nav > ul > li > a > span {
-      display: block;
-      transition: transform 350ms ease-in-out;
-    }
-    
-    .slideout-nav > ul > li > a::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: #722F37;
-      translate: 0 2lh;
-      z-index: -1;
-      transition: all 350ms ease-in-out;
-    }
-    
-    .slideout-nav > ul > li > a:hover > span {
-      transform: translateY(-2lh);
-      translate: 0 2lh;
-    }
-    
-    .slideout-nav > ul > li > a:hover::before {
-      translate: 0 0;
-    }
-    
-    /* Remove the wine line for Awards and Honours */
-    .slideout-nav > ul > li:nth-child(3) > a::before {
-      display: none;
-    }
   `;
   document.head.appendChild(oregonStyle);
 }
+
 
 const images = [
   '/display/display2.jpg',
@@ -222,9 +46,7 @@ const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const timeoutRef = useRef(null);
-  const navRef = useRef(null);
 
   // Check if desktop on mount and resize
   useEffect(() => {
@@ -246,40 +68,8 @@ const Hero = () => {
     return () => clearTimeout(timeoutRef.current);
   }, [current]);
 
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target) && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isMenuOpen]);
-
-  // Close menu on escape key
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isMenuOpen]);
-
   const prevSlide = () => setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   const nextSlide = () => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#EFDFBB' }}>
@@ -341,7 +131,7 @@ const Hero = () => {
           style={{
             top: '0',
             width: '100%',
-            backgroundImage: 'url(/display/display3.jpg)',
+            backgroundImage: 'url(/display/deskdisplay.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -363,102 +153,166 @@ const Hero = () => {
           
           
         </div>
-
-        {/* Desktop Menu Button */}
-        <nav className="slideout-nav" ref={navRef}>
-          <button 
-            type="button" 
-            id="btn-nav-toggle" 
-            aria-expanded={isMenuOpen}
-            aria-controls="nav-menu" 
-            aria-label="Toggle navigation menu"
-            onClick={toggleMenu}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 6l16 0" />
-                <path d="M4 12l16 0" />
-                <path d="M4 12l16 0" />
-                <path d="M4 18l16 0" />
-              </g>
-            </svg>
-          </button>
-
-          <ul id="nav-menu" role="list" aria-labelledby="btn-nav-toggle" aria-hidden={!isMenuOpen}>
-            <li style={{ '--i': 1 }}><a href="/"><span>Home</span></a></li>
-            <li style={{ '--i': 2 }}><a href="/my-journey/performances"><span>Performances</span></a></li>
-            <li style={{ '--i': 3 }}><a href="/my-journey/awards"><span>Awards and Honours</span></a></li>
-            <li style={{ '--i': 4 }}><a href="/my-journey/school"><span>Dance School</span></a></li>
-            <li style={{ '--i': 5 }}><a href="/my-journey/insights"><span>Gallery</span></a></li>
-            <li style={{ '--i': 6 }}><a href="/register"><span>Register</span></a></li>
-          </ul>
-        </nav>
       </div>
       
-      {/* Description and Resume: further below the fold on mobile, visible on desktop */}
+      {/* Description and Resume: Enhanced design for better visual appeal */}
       <div 
         className="w-full" 
         style={{ 
-          background: '#722F37',
+          background: 'linear-gradient(135deg, #722F37 0%, #8B3A42 50%, #722F37 100%)',
           color: '#F5F5DC',
           position: 'relative',
           minHeight: '100vh'
         }}
       >
-        <div className="max-w-xl md:max-w-6xl mx-auto flex flex-col items-center px-4 sm:px-8 py-16 relative z-10">
+        {/* Decorative background pattern */}
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 25% 25%, #F5F5DC 2px, transparent 2px), radial-gradient(circle at 75% 75%, #F5F5DC 2px, transparent 2px)',
+            backgroundSize: '60px 60px'
+          }}
+        ></div>
 
-          {/* About Heading */}
-          <h2 
-            className="text-4xl md:text-5xl font-bold tracking-widest mb-8 text-center"
-            style={{
-              color: '#F5F5DC',
-              fontFamily: 'Lucida Calligraphy, cursive',
-              fontStyle: 'italic',
-              textShadow: '0 2px 4px rgba(0,0,0,0.1)'
-            }}
-          >
-            ABOUT
-          </h2>
+        <div className="max-w-xl md:max-w-7xl mx-auto flex flex-col items-center px-6 sm:px-8 py-20 relative z-10">
 
-            <h1
-              className="text-4xl md:text-5xl font-bold mb-4 text-center"
-              style={{
-                color: '#F5F5DC',
-                fontFamily: 'Epistle, serif',
-                fontStyle: 'normal',
-                fontWeight: 'bold',
-              }}
-            >
-          ANUSHKAA RAMANATAN
-        </h1>
+          {/* Description Section - Clean Layout */}
+          <div className="w-full max-w-6xl mb-12">
+            <div className="relative">
+              {/* Mobile Layout - Stacked */}
+              <div className="block md:hidden">
+                {/* About Heading */}
+                <h2 
+                  className="text-4xl font-bold tracking-widest mb-8 text-center"
+                  style={{
+                    color: '#F5F5DC',
+                    fontFamily: 'Lucida Calligraphy, cursive',
+                    fontStyle: 'italic',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}
+                >
+                  ABOUT
+                </h2>
 
-        <p className="text-lg md:text-3xl mb-8 text-center leading-relaxed fade-in" style={{ animationDelay: '0.3s', fontFamily: 'Oregon, serif', letterSpacing: '1px', fontWeight: 400, color: '#F5F5DC' }}>
-          {showFullDesc ? (
-            <>
-              Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
-              Anushkaa has been a part of various Nalanda productions and has performed extensively as a part of the Nalanda Troupe, gaining much experience and exposure. She served as the President of the Student Council Committee at her alma mater, a role that helped her develop skills across diverse areas of work. <br/><br/>
-              Three years ago, Anushkaa founded 'Abhinita School of Dance' that provides authentic and traditional training in Bharatanatyam. <br/><br/>
-              Anushkaa currently works as an independent performer and with actively nurturing and expanding her dance class.
-            </>
-          ) : (
-            <>
-              Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
-              <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'Oregon, serif', color: '#F5F5DC', fontSize: '1.1em' }}>Read more</button>
-            </>
-          )}
-        </p>
-        {showFullDesc && (
-          <button onClick={() => setShowFullDesc(false)} className="underline font-semibold mb-4" style={{ fontFamily: 'Oregon, serif', color: '#F5F5DC', fontSize: '1.1em' }}>Show less</button>
-        )}
-        <a
-          href="/ArtisteBiography.pdf"
-          download
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl"
-          style={{ backgroundColor: '#F5F5DC', color: '#722F37', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
-        >
-          <span className="text-xl">📄</span>
-          Resume
-        </a>
+                <h1
+                  className="text-4xl font-bold mb-4 text-center"
+                  style={{
+                    color: '#F5F5DC',
+                    fontFamily: 'Epistle, serif',
+                    fontStyle: 'normal',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  ANUSHKAA RAMANATAN
+                </h1>
+              </div>
+
+              {/* Desktop Layout - Two Column */}
+              <div className="hidden md:flex md:items-start md:gap-8 lg:gap-12">
+                {/* Left Column - About Heading */}
+                <div className="flex-shrink-0 w-32 lg:w-40">
+                  <h2 
+                    className="text-3xl lg:text-4xl font-bold"
+                    style={{
+                      color: '#F5F5DC',
+                      fontFamily: 'Georgia, serif',
+                      fontWeight: 'bold',
+                      lineHeight: '1.2'
+                    }}
+                  >
+                    About me
+                  </h2>
+                </div>
+
+                {/* Right Column - Content */}
+                {/* Right Column - Content */}
+                <div className="flex-1 max-w-4xl">
+                  <p className="text-base md:text-lg mb-8 leading-relaxed fade-in" style={{ 
+                    animationDelay: '0.3s', 
+                    fontFamily: 'Georgia, serif', 
+                    fontWeight: 400, 
+                    color: '#F5F5DC', 
+                    lineHeight: '1.6',
+                    textAlign: 'justify'
+                  }}>
+                    {showFullDesc ? (
+                      <>
+                        Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
+                        Anushkaa has been a part of various Nalanda productions and has performed extensively as a part of the Nalanda Troupe, gaining much experience and exposure. She served as the President of the Student Council Committee at her alma mater, a role that helped her develop skills across diverse areas of work. <br/><br/>
+                        Three years ago, Anushkaa founded 'Abhinita School of Dance' that provides authentic and traditional training in Bharatanatyam. <br/><br/>
+                        Anushkaa currently works as an independent performer and with actively nurturing and expanding her dance class.
+                      </>
+                    ) : (
+                      <>
+                        Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
+                        <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC', fontSize: '1em' }}>Read more</button>
+                      </>
+                    )}
+                  </p>
+                  {showFullDesc && (
+                    <div className="mb-4">
+                      <button onClick={() => setShowFullDesc(false)} className="underline font-semibold" style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC', fontSize: '1em' }}>Show less</button>
+                    </div>
+                  )}
+                  
+                  {/* Resume button for desktop */}
+                  <div className="text-left">
+                    <a
+                      href="/ArtisteBiography.pdf"
+                      download
+                      className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl"
+                      style={{ backgroundColor: '#F5F5DC', color: '#722F37', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
+                    >
+                      <span className="text-xl">📄</span>
+                      Resume
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile description - separate from desktop layout */}
+              <div className="block md:hidden">
+                <p className="text-lg mb-8 text-center leading-relaxed fade-in mt-6" style={{ 
+                  animationDelay: '0.3s', 
+                  fontFamily: 'Georgia, serif', 
+                  fontWeight: 400, 
+                  color: '#F5F5DC', 
+                  lineHeight: '1.6'
+                }}>
+                  {showFullDesc ? (
+                    <>
+                      Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
+                      Anushkaa has been a part of various Nalanda productions and has performed extensively as a part of the Nalanda Troupe, gaining much experience and exposure. She served as the President of the Student Council Committee at her alma mater, a role that helped her develop skills across diverse areas of work. <br/><br/>
+                      Three years ago, Anushkaa founded 'Abhinita School of Dance' that provides authentic and traditional training in Bharatanatyam. <br/><br/>
+                      Anushkaa currently works as an independent performer and with actively nurturing and expanding her dance class.
+                    </>
+                  ) : (
+                    <>
+                      Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
+                      <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC', fontSize: '1em' }}>Read more</button>
+                    </>
+                  )}
+                </p>
+                {showFullDesc && (
+                  <div className="text-center mb-4">
+                    <button onClick={() => setShowFullDesc(false)} className="underline font-semibold" style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC', fontSize: '1em' }}>Show less</button>
+                  </div>
+                )}
+                <div className="text-center">
+                  <a
+                    href="/ArtisteBiography.pdf"
+                    download
+                    className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl"
+                    style={{ backgroundColor: '#F5F5DC', color: '#722F37', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
+                  >
+                    <span className="text-xl">📄</span>
+                    Resume
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
