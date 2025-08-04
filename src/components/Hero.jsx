@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // Import fonts
 if (typeof document !== 'undefined') {
@@ -29,6 +31,46 @@ if (typeof document !== 'undefined') {
       font-weight: normal;
       font-style: normal;
     }
+    
+    /* Scroll-triggered animations */
+    .scroll-fade-up {
+      opacity: 0;
+      transform: translateY(50px) scale(1.1);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .scroll-fade-up.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    .scroll-zoom-out {
+      opacity: 0;
+      transform: translateY(30px) scale(1.2);
+      transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .scroll-zoom-out.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    .dynamic-zoom-text {
+      transition: transform 0.1s ease-out;
+      transform-origin: center;
+    }
+    
+    .stagger-animation {
+      transition-delay: 0.2s;
+    }
+    
+    .stagger-animation-2 {
+      transition-delay: 0.4s;
+    }
+    
+    .hero-bg-parallax {
+      transition: transform 0.1s ease-out;
+    }
   `;
   document.head.appendChild(oregonStyle);
 }
@@ -46,7 +88,16 @@ const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState('down');
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [textZoomScale, setTextZoomScale] = useState(1);
+  
   const timeoutRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const footerRef = useRef(null);
 
   // Check if desktop on mount and resize
   useEffect(() => {
@@ -57,8 +108,79 @@ const Hero = () => {
     checkIsDesktop();
     window.addEventListener('resize', checkIsDesktop);
     
+    // Initialize AOS
+    AOS.init({
+      duration: 1200,
+      once: true,
+      easing: 'ease-out-cubic',
+      offset: 120
+    });
+    
     return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
+
+  // Handle scroll events for animations and zoom effects
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Detect scroll direction
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection('down');
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection('up');
+      }
+      
+      setScrollY(currentScrollY);
+      setLastScrollY(currentScrollY);
+      
+      // Calculate zoom scale based on scroll position and description visibility
+      if (descriptionRef.current && isDesktop) {
+        const rect = descriptionRef.current.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+        setIsDescriptionVisible(isInView);
+        
+        if (isInView) {
+          // Calculate scroll progress within the description section
+          const sectionTop = rect.top;
+          const sectionHeight = rect.height;
+          const viewportHeight = window.innerHeight;
+          
+          // Calculate how much of the section is visible (0 to 1)
+          const visibilityProgress = Math.max(0, Math.min(1, 
+            (viewportHeight - sectionTop) / (viewportHeight + sectionHeight)
+          ));
+          
+          // Create zoom effect based on scroll direction and progress
+          let zoomScale;
+          if (scrollDirection === 'down') {
+            // Zoom out when scrolling down (scale from 1.2 to 0.9)
+            zoomScale = 1.2 - (visibilityProgress * 0.3);
+          } else {
+            // Zoom in when scrolling up (scale from 0.9 to 1.2)
+            zoomScale = 0.9 + (visibilityProgress * 0.3);
+          }
+          
+          // Clamp the scale between 0.8 and 1.3 for smooth effect
+          zoomScale = Math.max(0.8, Math.min(1.3, zoomScale));
+          setTextZoomScale(zoomScale);
+        }
+      } else {
+        // For mobile or when section is not in view
+        setIsDescriptionVisible(currentScrollY > window.innerHeight * 0.5);
+      }
+      
+      // Check if footer area is in view (simulate footer section)
+      if (window.innerHeight + currentScrollY >= document.documentElement.scrollHeight * 0.85) {
+        setIsFooterVisible(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY, isDesktop]);
 
   // Auto-advance carousel every 3 seconds
   useEffect(() => {
@@ -125,18 +247,20 @@ const Hero = () => {
           backgroundColor: '#EFDFBB'
         }}
       >
-        {/* Background Image - positioned on the right */}
+        {/* Background Image - positioned on the right with parallax effect */}
         <div 
-          className="absolute right-0 h-full"
+          className="absolute right-0 h-full hero-bg-parallax"
           style={{
             top: '0',
             width: '100%',
-            backgroundImage: 'url(/display/deskdisplay.png)',
+            backgroundImage: 'url(/display/deskdisplay2.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
+            transform: `translateY(${scrollY * 0.3}px)` // Parallax effect
           }}
         ></div>
+        
         {/* Left side content - Name and greeting */}
         <div className="absolute left-2 top-8 z-10">
           {/* Artist Name */}
@@ -149,21 +273,21 @@ const Hero = () => {
           <p className="text-xl md:text-2xl font-bold tracking-widest mt-4" style={{ color: 'white', letterSpacing: '0.2em' }}>
             BHARATANATYAM ARTISTE
           </p>
-          
-          
-          
         </div>
       </div>
       
-      {/* Description and Resume: Enhanced design for better visual appeal */}
+      {/* Description Section - Clean Two-Column Layout with Scroll Animations */}
       <div 
-        className="w-full" 
+        ref={descriptionRef}
+        className="w-full"
         style={{ 
           background: 'linear-gradient(135deg, #722F37 0%, #8B3A42 50%, #722F37 100%)',
           color: '#F5F5DC',
           position: 'relative',
-          minHeight: '100vh'
+          minHeight: 'auto'
         }}
+        data-aos="fade-up"
+        data-aos-duration="1500"
       >
         {/* Decorative background pattern */}
         <div 
@@ -174,10 +298,9 @@ const Hero = () => {
           }}
         ></div>
 
-        <div className="max-w-xl md:max-w-7xl mx-auto flex flex-col items-center px-6 sm:px-8 py-20 relative z-10">
-
-          {/* Description Section - Clean Layout */}
-          <div className="w-full max-w-6xl mb-12">
+        <div className="max-w-xl md:max-w-7xl mx-auto flex flex-col items-center px-6 sm:px-8 py-8 relative z-10">
+          {/* Description Section */}
+          <div className="w-full max-w-6xl mb-6">
             <div className="relative">
               {/* Mobile Layout - Stacked */}
               <div className="block md:hidden">
@@ -190,6 +313,8 @@ const Hero = () => {
                     fontStyle: 'italic',
                     textShadow: '0 2px 4px rgba(0,0,0,0.1)'
                   }}
+                  data-aos="fade-down"
+                  data-aos-delay="200"
                 >
                   ABOUT
                 </h2>
@@ -202,6 +327,8 @@ const Hero = () => {
                     fontStyle: 'normal',
                     fontWeight: 'bold',
                   }}
+                  data-aos="flip-up"
+                  data-aos-delay="400"
                 >
                   ANUSHKAA RAMANATAN
                 </h1>
@@ -212,29 +339,36 @@ const Hero = () => {
                 {/* Left Column - About Heading */}
                 <div className="flex-shrink-0 w-32 lg:w-40">
                   <h2 
-                    className="text-3xl lg:text-4xl font-bold"
+                    className="text-3xl lg:text-4xl font-bold dynamic-zoom-text"
                     style={{
                       color: '#F5F5DC',
                       fontFamily: 'Georgia, serif',
                       fontWeight: 'bold',
-                      lineHeight: '1.2'
+                      lineHeight: '1.2',
+                      transform: `scale(${textZoomScale})`
                     }}
+                    data-aos="fade-right"
+                    data-aos-delay="200"
                   >
                     About me
                   </h2>
                 </div>
 
                 {/* Right Column - Content */}
-                {/* Right Column - Content */}
                 <div className="flex-1 max-w-4xl">
-                  <p className="text-base md:text-lg mb-8 leading-relaxed fade-in" style={{ 
-                    animationDelay: '0.3s', 
-                    fontFamily: 'Georgia, serif', 
-                    fontWeight: 400, 
-                    color: '#F5F5DC', 
-                    lineHeight: '1.6',
-                    textAlign: 'justify'
-                  }}>
+                  <p 
+                    className="text-base md:text-lg mb-4 leading-relaxed dynamic-zoom-text" 
+                    style={{ 
+                      fontFamily: 'Georgia, serif', 
+                      fontWeight: 400, 
+                      color: '#F5F5DC', 
+                      lineHeight: '1.6',
+                      textAlign: 'justify',
+                      transform: `scale(${textZoomScale})`
+                    }}
+                    data-aos="fade-left"
+                    data-aos-delay="400"
+                  >
                     {showFullDesc ? (
                       <>
                         Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
@@ -244,23 +378,33 @@ const Hero = () => {
                       </>
                     ) : (
                       <>
-                        Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. <span style={{ fontWeight: 600 }}>... </span>
+                        Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. <span style={{ fontWeight: 600 }}>... </span>
                         <button onClick={() => setShowFullDesc(true)} className="underline font-semibold ml-1" style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC', fontSize: '1em' }}>Read more</button>
                       </>
                     )}
                   </p>
                   {showFullDesc && (
-                    <div className="mb-4">
+                    <div 
+                      className="mb-4 dynamic-zoom-text"
+                      style={{ transform: `scale(${textZoomScale})` }}
+                      data-aos="slide-up"
+                      data-aos-delay="800"
+                    >
                       <button onClick={() => setShowFullDesc(false)} className="underline font-semibold" style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC', fontSize: '1em' }}>Show less</button>
                     </div>
                   )}
                   
                   {/* Resume button for desktop */}
-                  <div className="text-left">
+                  <div 
+                    className="text-left dynamic-zoom-text"
+                    style={{ transform: `scale(${textZoomScale})` }}
+                    data-aos="zoom-in"
+                    data-aos-delay="600"
+                  >
                     <a
                       href="/ArtisteBiography.pdf"
                       download
-                      className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl"
+                      className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl hover:scale-105 transition-transform duration-300"
                       style={{ backgroundColor: '#F5F5DC', color: '#722F37', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
                     >
                       <span className="text-xl">📄</span>
@@ -272,13 +416,17 @@ const Hero = () => {
 
               {/* Mobile description - separate from desktop layout */}
               <div className="block md:hidden">
-                <p className="text-lg mb-8 text-center leading-relaxed fade-in mt-6" style={{ 
-                  animationDelay: '0.3s', 
-                  fontFamily: 'Georgia, serif', 
-                  fontWeight: 400, 
-                  color: '#F5F5DC', 
-                  lineHeight: '1.6'
-                }}>
+                <p 
+                  className="text-lg mb-8 text-center leading-relaxed" 
+                  style={{ 
+                    fontFamily: 'Georgia, serif', 
+                    fontWeight: 400, 
+                    color: '#F5F5DC', 
+                    lineHeight: '1.6'
+                  }}
+                  data-aos="fade-up"
+                  data-aos-delay="600"
+                >
                   {showFullDesc ? (
                     <>
                       Anushkaa Ramanatan is a Bharatanatyam practitioner and performer based in Mumbai. With over 15 years of rigorous traditional training, she began her journey at the hobby-class level and went on to pursue formal education in the art form. She earned her Bachelor's degree in Bharatanatyam from Nalanda Nritya Kala Mahavidyalaya, consistently securing the top rank throughout her course. She recently completed her Master of Performing Arts degree in Bharatanatyam from Nalanda.<br/><br/>
@@ -294,15 +442,23 @@ const Hero = () => {
                   )}
                 </p>
                 {showFullDesc && (
-                  <div className="text-center mb-4">
+                  <div 
+                    className="text-center mb-4"
+                    data-aos="slide-up"
+                    data-aos-delay="800"
+                  >
                     <button onClick={() => setShowFullDesc(false)} className="underline font-semibold" style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC', fontSize: '1em' }}>Show less</button>
                   </div>
                 )}
-                <div className="text-center">
+                <div 
+                  className="text-center"
+                  data-aos="zoom-out"
+                  data-aos-delay="700"
+                >
                   <a
                     href="/ArtisteBiography.pdf"
                     download
-                    className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl"
+                    className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold shadow-xl hover:scale-105 transition-transform duration-300"
                     style={{ backgroundColor: '#F5F5DC', color: '#722F37', fontFamily: 'Lucida Calligraphy, cursive', fontStyle: 'italic' }}
                   >
                     <span className="text-xl">📄</span>
@@ -310,7 +466,33 @@ const Hero = () => {
                   </a>
                 </div>
               </div>
+            </div>
+          </div>
 
+          {/* Footer Section with Animation */}
+          <div 
+            ref={footerRef}
+            className="w-full max-w-6xl text-center"
+            style={{ paddingTop: '1rem' }}
+          >
+            <div data-aos="flip-down" data-aos-delay="1000">
+              <p 
+                className="text-lg opacity-80 mb-4" 
+                style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC' }}
+                data-aos="fade-up"
+                data-aos-delay="1200"
+              >
+                "Dance is the hidden language of the soul, expressing what words cannot convey."
+              </p>
+              <div 
+                className="flex justify-center items-center gap-4 opacity-60"
+                data-aos="flip-left"
+                data-aos-delay="1400"
+              >
+                <div className="w-12 h-0.5 bg-current"></div>
+                <span style={{ fontFamily: 'Lucida Calligraphy, cursive' }}>✦</span>
+                <div className="w-12 h-0.5 bg-current"></div>
+              </div>
             </div>
           </div>
         </div>

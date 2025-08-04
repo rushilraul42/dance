@@ -365,7 +365,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link 
-                    to="/my-journey/performances"
+                    to="/about"
                     className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
                     style={{ 
                       color: isHomePage ? 'white' : '#EFDFBB', 
@@ -376,23 +376,7 @@ const Header = () => {
                       fontStyle: 'italic'
                     }}
                   >
-                    Performances
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    to="/my-journey/awards"
-                    className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                    style={{ 
-                      color: isHomePage ? 'white' : '#EFDFBB', 
-                      background: 'transparent', 
-                      outline: 'none', 
-                      border: 'none',
-                      fontFamily: 'Lucida Calligraphy, cursive',
-                      fontStyle: 'italic'
-                    }}
-                  >
-                    Awards and Honours
+                    About
                   </Link>
                 </li>
                 <li>
@@ -409,22 +393,6 @@ const Header = () => {
                     }}
                   >
                     Dance School
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    to="/my-journey/insights"
-                    className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
-                    style={{ 
-                      color: isHomePage ? 'white' : '#EFDFBB', 
-                      background: 'transparent', 
-                      outline: 'none', 
-                      border: 'none',
-                      fontFamily: 'Lucida Calligraphy, cursive',
-                      fontStyle: 'italic'
-                    }}
-                  >
-                    Gallery
                   </Link>
                 </li>
                 <li>

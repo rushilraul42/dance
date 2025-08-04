@@ -79,75 +79,101 @@ const DanceSchool = () => {
   }, [reviews.length]);
 
   return (
-  <>
-    <section style={{ background: '#EFDFBB', color: '#722F37' }} className="pt-20 mt-20 pb-20">
-    <div className="max-w-4xl mx-auto px-4">
-      <div className="text-center mb-12 fade-in">
-        <div className="text-5xl mb-4 text-[#722F37] bounce-animation">🏛️</div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 highlight" style={{ color: '#722F37' }}>Abhinita School of Dance</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-[#722F37] to-[#722F37] mx-auto rounded-full"></div>
-      </div>
+    <>
+      <section style={{ background: '#EFDFBB', color: '#722F37' }} className="pt-20 mt-20 pb-20">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12 fade-in">
+            <div className="text-5xl mb-4 text-[#722F37] bounce-animation">🏛️</div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 highlight" style={{ color: '#722F37' }}>
+              Abhinita School of Dance
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#722F37] to-[#722F37] mx-auto rounded-full"></div>
+          </div>
 
-      {/* School Description with Video Background */}
-      <div className="relative space-y-8 text-lg leading-relaxed mt-8 p-8 rounded-2xl overflow-hidden border-2 border-[#722F37]">
-        {/* Background Video */}
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          webkit-playsinline="true"
-          controls={false}
-          poster="/display.jpg"
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          style={{ filter: 'brightness(1.7)' }}
-        >
-          <source src="/1.mp4" type="video/mp4" />
-          {/* Fallback image for devices that don't support video */}
-          Your browser does not support the video tag.
-        </video>
+          {/* School Description with Video Background */}
+          <div className="relative space-y-8 text-lg leading-relaxed mt-8 p-8 rounded-2xl overflow-hidden border-2 border-[#722F37]">
+            {/* Background Video */}
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="absolute top-0 left-0 w-full h-full object-cover z-0"
+              style={{ filter: 'brightness(1.7)' }}
+            >
+              <source src="/1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
 
-        {/* Fallback background image for mobile devices */}
-        <div 
-          className="video-fallback absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
-          style={{
-            backgroundImage: 'url("/display.jpg")',
-            filter: 'brightness(1.5)',
-            display: 'none'
-          }}
-        ></div>
+            {/* Fallback background image for mobile devices */}
+            <div
+              className="video-fallback absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
+              style={{
+                backgroundImage: 'url("/display.jpg")',
+                filter: 'brightness(1.5)',
+                display: 'none',
+              }}
+            ></div>
 
-        {/* Dark overlay for better text readability */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/70 bg-opacity-80 z-1"></div>
+            {/* Dark overlay for better text readability */}
+            <div className="absolute top-0 left-0 w-full h-full bg-black/70 bg-opacity-80 z-1"></div>
 
-        <p className="relative z-10 fade-in text-white font-semibold" style={{ animationDelay: '0.1s', fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
-          Abhinita School of Dance, affiliated with the renowned <span className="text-white font-semibold">Nalanda Dance Research Centre</span>,
-          offers a certified course in Bharatanatyam — one of the most graceful and ancient classical dance forms of India. The school is
-          dedicated to providing authentic and traditional training while making the learning process enjoyable and meaningful.
-        </p>
+            <p
+              className="relative z-10 fade-in text-white font-semibold"
+              style={{
+                animationDelay: '0.1s',
+                fontFamily: 'Lucida Calligraphy, serif',
+                fontStyle: 'italic',
+              }}
+            >
+              Abhinita School of Dance, affiliated with the renowned{' '}
+              <span className="text-white font-semibold">Nalanda Dance Research Centre</span>, offers a certified course in Bharatanatyam — one of the most graceful and ancient classical dance forms of India. The school is dedicated to providing authentic and traditional training while making the learning process enjoyable and meaningful.
+            </p>
 
-        <p className="relative z-10 fade-in text-white font-semibold" style={{ animationDelay: '0.2s', fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
-          Led by <span className="text-white font-semibold">Anushkaa Ramanatan</span>, the classes focus deeply on the technique of dancing,
-          with attention to even the tiniest details. Alongside movement training, students also learn allied subjects like <span className="text-white">History of dance</span>, <span className="text-white">Indian mythology</span>, <span className="text-white">Sanskrit shlokas</span>, <span className="text-white">Talam (rhythm)</span>, <span className="text-white">basic concepts of Music</span>, and <span className="text-white">Abhinaya (expressions)</span>, helping them understand the magnanimity and cultural richness behind the art.
-        </p>
+            <p
+              className="relative z-10 fade-in text-white font-semibold"
+              style={{
+                animationDelay: '0.2s',
+                fontFamily: 'Lucida Calligraphy, serif',
+                fontStyle: 'italic',
+              }}
+            >
+              Led by <span className="text-white font-semibold">Anushkaa Ramanatan</span>, the classes focus deeply on the technique of dancing, with attention to even the tiniest details. Alongside movement training, students also learn allied subjects like{' '}
+              <span className="text-white">History of dance</span>, <span className="text-white">Indian mythology</span>, <span className="text-white">Sanskrit shlokas</span>, <span className="text-white">Talam (rhythm)</span>, <span className="text-white">basic concepts of Music</span>, and <span className="text-white">Abhinaya (expressions)</span>, helping them understand the magnanimity and cultural richness behind the art.
+            </p>
 
-        <p className="relative z-10 fade-in text-white font-semibold" style={{ animationDelay: '0.3s', fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
-          What makes Abhinita School Of Dance truly special is its <span className="text-white font-semibold">warm and lively classroom environment</span>. While students are trained with discipline and structure, the classes are fun, engaging, and thoughtfully designed to spark creativity and passion.
-        </p>
+            <p
+              className="relative z-10 fade-in text-white font-semibold"
+              style={{
+                animationDelay: '0.3s',
+                fontFamily: 'Lucida Calligraphy, serif',
+                fontStyle: 'italic',
+              }}
+            >
+              What makes Abhinita School Of Dance truly special is its{' '}
+              <span className="text-white font-semibold">warm and lively classroom environment</span>. While students are trained with discipline and structure, the classes are fun, engaging, and thoughtfully designed to spark creativity and passion.
+            </p>
 
-        <p className="relative z-10 fade-in text-center bg-[#11111]/40 p-6 rounded-2xl border border-[#722F37]/30 text-white font-black" style={{ animationDelay: '0.4s', fontFamily: 'Lucida Calligraphy, serif', fontStyle: 'italic' }}>
-          <span className="text-white font-black text-xl">Our Goal:</span><br />
-          The goal is not just to teach Bharatanatyam, but to help each student fall in love with it — to explore their roots, embrace Indian
-          culture, and grow into expressive, confident, and well-rounded individuals.
-        </p>
-      </div>
-    </div>
-  </section>
+            <p
+              className="relative z-10 fade-in text-center bg-[#11111]/40 p-6 rounded-2xl border border-[#722F37]/30 text-white font-black"
+              style={{
+                animationDelay: '0.4s',
+                fontFamily: 'Lucida Calligraphy, serif',
+                fontStyle: 'italic',
+              }}
+            >
+              <span className="text-white font-black text-xl">Our Goal:</span>
+              <br />
+              The goal is not just to teach Bharatanatyam, but to help each student fall in love with it — to explore their roots, embrace Indian culture, and grow into expressive, confident, and well-rounded individuals.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  {/* Reviews Section - New section with different background */}
-  <section style={{ background: 'linear-gradient(135deg, #722F37 0%, #5a2529 100%)', color: '#EFDFBB' }} className="py-20">
+      {/* Reviews Section - New section with different background */}
+      <section style={{ background: 'linear-gradient(135deg, #722F37 0%, #5a2529 100%)', color: '#EFDFBB' }} className="py-20">
     <div className="max-w-6xl mx-auto px-4">
       {/* Reviews Carousel */}
       <div className="mb-20">
@@ -245,7 +271,7 @@ const DanceSchool = () => {
       </div>
     </div>
   </section>
-  </>
+    </>
   );
 };
 

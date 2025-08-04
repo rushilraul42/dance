@@ -2,14 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
-import Performances from './components/Performances';
+import About from './components/About';
 import Events from './components/Events';
 import Footer from './components/Footer';
 import Register from './components/Register';
 import Achievements from './components/Achievements';
-import Awards from './components/Awards';
 import DanceSchool from './components/DanceSchool';
-import Gallery from './components/Gallery';
 import './index.css';
 
 function App() {
@@ -41,16 +39,13 @@ function App() {
                       <div className="w-24 h-1 bg-[#C59C79] mx-auto rounded-full mt-8 scale-in" style={{animationDelay: '0.5s'}}></div>
                     </div>
                   </div>
-                  <Performances />
                   <Achievements />
                   <Events />
                 </div>
               }
             />
-            <Route path="/my-journey/performances" element={<Performances />} />
-            <Route path="/my-journey/awards" element={<Awards />} />
+            <Route path="/about" element={<About />} />
             <Route path="/my-journey/school" element={<DanceSchool />} />
-            <Route path="/my-journey/insights" element={<Gallery />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </main>
