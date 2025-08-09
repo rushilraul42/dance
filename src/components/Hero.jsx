@@ -196,7 +196,7 @@ const Hero = () => {
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#EFDFBB' }}>
       {/* Mobile Carousel */}
-      <div className="block md:hidden relative w-full h-[92vh] sm:h-[80vh] max-h-[900px] flex items-center justify-center overflow-hidden shadow-2xl" style={{ backgroundColor: 'black' }}>
+      <div className="block md:hidden relative w-full h-[92vh] sm:h-[80vh] max-h-[900px] flex items-center justify-center overflow-hidden shadow-2xl">
         <button
           onClick={prevSlide}
           className="hidden sm:block absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-[#4A7766]/90 hover:bg-[#C59C79] hover:text-[#4A7766] text-[#ECE7E2] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover-lift"
@@ -209,7 +209,7 @@ const Hero = () => {
           alt={`Performance ${current + 1}`}
           className="w-full h-full select-none transition-all duration-700 ease-in-out scale-in"
           style={{
-            objectFit: 'contain',
+            objectFit: 'cover',
             objectPosition: 'center',
             maxHeight: '100%',
             maxWidth: '100%',
@@ -217,7 +217,6 @@ const Hero = () => {
             height: '100%',
             opacity: 1,
             transition: 'opacity 0.7s, transform 0.7s',
-            backgroundColor: 'black',
             transform: current === 1 ? 'translateX(-2px)' : 'none'
           }}
         />
@@ -284,7 +283,7 @@ const Hero = () => {
       {/* Description Section - Clean Two-Column Layout with Scroll Animations */}
       <div 
         ref={descriptionRef}
-        className="w-full"
+        className="w-full -mt-6 md:mt-0"
         style={{ 
           background: 'linear-gradient(135deg, #722F37 0%, #8B3A42 50%, #722F37 100%)',
           color: '#F5F5DC',
