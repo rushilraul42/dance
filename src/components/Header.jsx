@@ -284,7 +284,7 @@ const Header = () => {
             }} onClick={() => setNavOpen(false)}>Dance School</Link>
           </li>
           <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
-            <Link to="/about" style={{ 
+            <Link to="/gallery" style={{ 
               display: 'block', 
               padding: '8px 0', 
               fontSize: '1.8rem', 

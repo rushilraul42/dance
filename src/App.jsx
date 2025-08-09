@@ -7,6 +7,9 @@ import Footer from './components/Footer';
 import Register from './components/Register';
 import Achievements from './components/Achievements';
 import DanceSchool from './components/DanceSchool';
+import Performances from './components/Performances';
+import Awards from './components/Awards';
+import Gallery from './components/Gallery';
 import './index.css';
 
 function App() {
@@ -44,6 +47,9 @@ function App() {
             />
             <Route path="/about" element={<About />} />
             <Route path="/my-journey/school" element={<DanceSchool />} />
+            <Route path="/my-journey/performances" element={<Performances />} />
+            <Route path="/my-journey/awards" element={<Awards />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </main>
