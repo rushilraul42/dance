@@ -1,17 +1,63 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-// Add local font import for Allura Regular
+// Add local font import for Allura Regular and Futura Light
 if (typeof document !== 'undefined') {
   const style = document.createElement('style');
   style.textContent = `
     @font-face {
       font-family: 'Allura Local';
-      src: url('/fonts/fonts/Allura-Regular.ttf') format('truetype'),
+      src: url('/fonts/fonts/Allura-Regular.ttf'                  <Link 
+                      <Link 
+                      <Link 
+                    to="/register"
+                    className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                    style={{ 
+                      color: isRegisterPage ? 'white' : '#EFDFBB', 
+                      background: 'transparent', 
+                      outline: 'none', 
+                      border: 'none',
+                      fontFamily: '"Futura Light", Futura, sans-serif',
+                      fontWeight: 300
+                    }}
+                  >
+                    Register
+                  </Link>  to="/dance-school"
+                    className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                    style={{ 
+                      color: isDanceSchoolPage ? 'white' : '#EFDFBB', 
+                      background: 'transparent', 
+                      outline: 'none', 
+                      border: 'none',
+                      fontFamily: '"Futura Light", Futura, sans-serif',
+                      fontWeight: 300
+                    }}
+                  >
+                    Dance School
+                  </Link>  to="/about"
+                    className="flex items-center gap-2 px-3 py-2 font-semibold transition-colors duration-200 hover:text-white"
+                    style={{ 
+                      color: isAboutPage ? 'white' : '#EFDFBB', 
+                      background: 'transparent', 
+                      outline: 'none', 
+                      border: 'none',
+                      fontFamily: '"Futura Light", Futura, sans-serif',
+                      fontWeight: 300
+                    }}
+                  >
+                    About
+                  </Link>type'),
            url('/fonts/fonts/Allura-Regular.ttf.woff') format('woff'),
            url('/fonts/fonts/Allura-Regular.ttf.eot') format('embedded-opentype'),
            url('/fonts/fonts/Allura-Regular.ttf.svg#Allura-Regular') format('svg');
       font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Futura Light';
+      src: url('/fonts/futuralight.ttf') format('truetype');
+      font-weight: 300;
       font-style: normal;
       font-display: swap;
     }
@@ -58,19 +104,39 @@ const Header = () => {
       {/* Mobile Header */}
       <header 
         style={{ 
-          background: '#722F37', 
-          borderBottom: '1px solid #ECE7E2', 
-          boxShadow: '4px 0 24px 0 rgba(0,0,0,0.18)', 
+          background: 'none', 
+          borderBottom: 'none', 
+          boxShadow: 'none', 
           zIndex: 1000,
           transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-          transition: 'transform 0.3s ease-in-out'
+          transition: 'transform 0.3s ease-in-out',
+          backgroundColor: 'transparent'
         }} 
-        className="backdrop-blur fixed top-0 right-0 left-0 w-full block md:hidden"
+        className="fixed top-0 right-0 left-0 w-full block md:hidden"
       >
+      {/* Mobile Title */}
+      <div className="flex justify-between items-center px-4 py-3">
+        <Link to="/" className="flex items-center cursor-pointer">
+          <h1 
+            style={{ 
+              fontFamily: 'Allura Local, "Allura-Regular", cursive',
+              fontSize: '1.8rem',
+              color: 'white',
+              margin: 0,
+              fontWeight: '600',
+              fontStyle: 'bold',
+              textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+              letterSpacing: '0.02em'
+            }}
+          >
+            Anushkaa Ramanatan
+          </h1>
+        </Link>
+      </div>
       {/* Hamburger Icon - only show on mobile */}
       <div
         className="md:hidden"
-        style={{ position: 'absolute', right: '20px', top: '22px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none' }}
+        style={{ position: 'absolute', right: '20px', top: '18px', border: 0, zIndex: 999, cursor: 'pointer', outline: 'none' }}
         onClick={() => setNavOpen(!navOpen)}
         tabIndex={0}
         aria-label="Open menu"
@@ -78,7 +144,7 @@ const Header = () => {
         <div className="bread" style={{ 
           width: 30, 
           height: 3, 
-          backgroundColor: '#EFDFBB', 
+          backgroundColor: 'white', 
           margin: '6px 0', 
           transition: '.3s',
           transform: navOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none'
@@ -86,7 +152,7 @@ const Header = () => {
         <div className="bread" style={{ 
           width: 30, 
           height: 3, 
-          backgroundColor: '#EFDFBB', 
+          backgroundColor: 'white', 
           margin: '6px 0', 
           transition: '.3s',
           opacity: navOpen ? 0 : 1
@@ -94,7 +160,7 @@ const Header = () => {
         <div className="bread" style={{ 
           width: 30, 
           height: 3, 
-          backgroundColor: '#EFDFBB', 
+          backgroundColor: 'white', 
           margin: '6px 0', 
           transition: '.3s',
           transform: navOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none'
@@ -254,20 +320,7 @@ const Header = () => {
             className="flex items-center cursor-pointer"
             onClick={() => setIsMenuOpen(false)}
           >
-            <h1 
-              style={{ 
-                fontFamily: 'Allura Local, "Allura-Regular", cursive',
-                fontSize: '3.2rem',
-                color: '#EFDFBB',
-                margin: 0,
-                fontWeight: '600',
-                fontStyle: 'bold',
-                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                letterSpacing: '0.02em'
-              }}
-            >
-              Anushkaa Ramanatan
-            </h1>
+           
           </Link>
 
           {/* Off-canvas Mobile Nav - only for mobile */}
@@ -356,8 +409,8 @@ const Header = () => {
                       background: 'transparent', 
                       outline: 'none', 
                       border: 'none',
-                      fontFamily: 'Lucida Calligraphy, cursive',
-                      fontStyle: 'italic'
+                      fontFamily: '"Futura Light", Futura, sans-serif',
+                      fontWeight: 300
                     }}
                   >
                     Home
@@ -372,8 +425,8 @@ const Header = () => {
                       background: 'transparent', 
                       outline: 'none', 
                       border: 'none',
-                      fontFamily: 'Lucida Calligraphy, cursive',
-                      fontStyle: 'italic'
+                      fontFamily: 'Futura, "Futura Light", sans-serif',
+                      fontWeight: 300
                     }}
                   >
                     About
@@ -388,8 +441,8 @@ const Header = () => {
                       background: 'transparent', 
                       outline: 'none', 
                       border: 'none',
-                      fontFamily: 'Lucida Calligraphy, cursive',
-                      fontStyle: 'italic'
+                      fontFamily: 'Futura, "Futura Light", sans-serif',
+                      fontWeight: 300
                     }}
                   >
                     Dance School
@@ -404,8 +457,8 @@ const Header = () => {
                       background: 'transparent', 
                       outline: 'none', 
                       border: 'none',
-                      fontFamily: 'Lucida Calligraphy, cursive',
-                      fontStyle: 'italic'
+                      fontFamily: 'Futura, "Futura Light", sans-serif',
+                      fontWeight: 300
                     }}
                   >
                     Register

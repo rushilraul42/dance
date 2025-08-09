@@ -196,7 +196,7 @@ const Hero = () => {
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-start pt-0 pb-0 fade-in" style={{ background: '#EFDFBB' }}>
       {/* Mobile Carousel */}
-      <div className="block md:hidden relative w-full h-[92vh] sm:h-[80vh] max-h-[900px] flex items-center justify-center overflow-hidden bg-[#ECE7E2] shadow-2xl">
+      <div className="block md:hidden relative w-full h-[92vh] sm:h-[80vh] max-h-[900px] flex items-center justify-center overflow-hidden shadow-2xl" style={{ backgroundColor: 'black' }}>
         <button
           onClick={prevSlide}
           className="hidden sm:block absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-[#4A7766]/90 hover:bg-[#C59C79] hover:text-[#4A7766] text-[#ECE7E2] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover-lift"
@@ -209,12 +209,16 @@ const Hero = () => {
           alt={`Performance ${current + 1}`}
           className="w-full h-full select-none transition-all duration-700 ease-in-out scale-in"
           style={{
-            objectFit: 'cover',
+            objectFit: 'contain',
             objectPosition: 'center',
             maxHeight: '100%',
-            minHeight: '320px',
+            maxWidth: '100%',
+            width: '100%',
+            height: '100%',
             opacity: 1,
             transition: 'opacity 0.7s, transform 0.7s',
+            backgroundColor: 'black',
+            transform: current === 1 ? 'translateX(-2px)' : 'none'
           }}
         />
         <button
@@ -253,10 +257,11 @@ const Hero = () => {
           style={{
             top: '0',
             width: '100%',
-            backgroundImage: 'url(/display/deskdisplay2.png)',
+            backgroundImage: 'url(/display/desktopback6.png)',
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
+            minHeight: '1080px',
             transform: `translateY(${scrollY * 0.3}px)` // Parallax effect
           }}
         ></div>
@@ -335,9 +340,9 @@ const Hero = () => {
               </div>
 
               {/* Desktop Layout - Two Column */}
-              <div className="hidden md:flex md:items-start md:gap-8 lg:gap-12">
+              <div className="hidden md:flex md:items-start md:gap-16 lg:gap-24">
                 {/* Left Column - About Heading */}
-                <div className="flex-shrink-0 w-32 lg:w-40">
+                <div className="flex-shrink-0 w-24 lg:w-32 -ml-4 lg:-ml-8">
                   <h2 
                     className="text-3xl lg:text-4xl font-bold dynamic-zoom-text"
                     style={{
@@ -355,7 +360,7 @@ const Hero = () => {
                 </div>
 
                 {/* Right Column - Content */}
-                <div className="flex-1 max-w-4xl">
+                <div className="flex-1 max-w-4xl ml-8 lg:ml-16">
                   <p 
                     className="text-base md:text-lg mb-4 leading-relaxed dynamic-zoom-text" 
                     style={{ 
@@ -476,14 +481,6 @@ const Hero = () => {
             style={{ paddingTop: '1rem' }}
           >
             <div data-aos="flip-down" data-aos-delay="1000">
-              <p 
-                className="text-lg opacity-80 mb-4" 
-                style={{ fontFamily: 'Georgia, serif', color: '#F5F5DC' }}
-                data-aos="fade-up"
-                data-aos-delay="1200"
-              >
-                "Dance is the hidden language of the soul, expressing what words cannot convey."
-              </p>
               <div 
                 className="flex justify-center items-center gap-4 opacity-60"
                 data-aos="flip-left"
