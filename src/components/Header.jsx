@@ -284,7 +284,7 @@ const Header = () => {
             }} onClick={() => setNavOpen(false)}>Dance School</Link>
           </li>
           <li style={{ borderBottom: '2px solid #EFDFBB', paddingBottom: '0.8rem' }}>
-            <Link to="/my-journey/insights" style={{ 
+            <Link to="/about" style={{ 
               display: 'block', 
               padding: '8px 0', 
               fontSize: '1.8rem', 
@@ -363,7 +363,7 @@ const Header = () => {
                     <li><Link to="/my-journey/performances" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Performances</Link></li>
                     <li><Link to="/my-journey/awards" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Awards and Honours</Link></li>
                     <li><Link to="/my-journey/school" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Dance School</Link></li>
-                    <li><Link to="/my-journey/insights" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Gallery</Link></li>
+                    <li><Link to="/about" className="block px-6 py-3" style={{ color: '#ECE7E2', background: 'transparent' }} onClick={() => setIsMenuOpen(false)}>Gallery</Link></li>
                   </ul>
                 )}
               </li>

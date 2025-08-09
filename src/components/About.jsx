@@ -319,7 +319,7 @@ const About = () => {
           </div>
 
           {/* Mobile Gallery Layout - Keep original for mobile */}
-          <div className="block md:hidden">
+          <div className="block md:hidden px-4">
             <div className="grid grid-cols-1 gap-8">
               {galleryImages.map((image, index) => (
                 <div
@@ -328,6 +328,7 @@ const About = () => {
                   style={{
                     background: '#722F37',
                     borderColor: '#722F37',
+                    minHeight: '300px'
                   }}
                 >
                   <div className="aspect-square overflow-hidden">
