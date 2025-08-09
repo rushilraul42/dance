@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import About from './components/About';
-import Events from './components/Events';
 import Footer from './components/Footer';
 import Register from './components/Register';
 import Achievements from './components/Achievements';
@@ -40,7 +39,6 @@ function App() {
                     </div>
                   </div>
                   <Achievements />
-                  <Events />
                 </div>
               }
             />
