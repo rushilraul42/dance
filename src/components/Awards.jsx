@@ -17,7 +17,7 @@ const Awards = () => (
   <section style={{ background: '#222', color: '#ECE7E2', position: 'relative', overflow: 'hidden' }} className="pt-20 py-20 mt-20 md:min-h-screen">
     {/* Blurred background image */}
     <img
-      src={window.innerWidth >= 768 ? "/awardpc.jpg" : "/award.jpg"}
+      src={window.innerWidth >= 768 ? "/awards/awardpc.jpg" : "/awards/award.jpg"}
       alt="Awards Background"
       style={{
         position: 'absolute',

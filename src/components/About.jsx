@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const About = () => {
   const [playingVideo, setPlayingVideo] = useState(null);
   const [modalImg, setModalImg] = useState(null);
+  const galleryRef = useRef(null);
+  const performancesRef = useRef(null);
+  const awardsRef = useRef(null);
+  const mentionsRef = useRef(null);
+  const galleryPageRef = useRef(null);
+  const [currentSection, setCurrentSection] = useState(0);
 
   // Performances data
   const performances = [
@@ -54,41 +60,124 @@ const About = () => {
     { src: '/gallery/g4.jpg', alt: '"Annual Day 2025" - Proud 3rd Year teacher at Nalanda Dance Research Centre.' },
   ];
 
-  // Gallery hover effects
+  // Gallery hover / active effects (robust delegation)
   useEffect(() => {
-    const cards = document.querySelectorAll(".gallery-card");
+    const container = galleryRef.current;
+    if (!container) return;
 
-    // Add "is-active" class to all cards initially
+    const cards = container.querySelectorAll(".gallery-card");
+    // Initially set all cards as active
     cards.forEach(card => card.classList.add("is-active"));
 
-    const handleMouseEnter = (event) => {
-      const card = event.target.closest(".gallery-card");
+    // Utility to find ancestor in composedPath / path or fallback
+    function findGalleryCardFromEvent(event) {
+      // Use composedPath() where available (handles shadow DOM etc.)
+      const path = (typeof event.composedPath === 'function') ? event.composedPath() : (event.path || []);
+      if (path && path.length) {
+        for (const node of path) {
+          if (node && node.classList && node.classList.contains && node.classList.contains('gallery-card')) {
+            return node;
+          }
+        }
+      }
+      // Fallback: climb DOM from target if it's an Element
+      let el = event.target;
+      while (el) {
+        if (el.classList && el.classList.contains && el.classList.contains('gallery-card')) return el;
+        el = el.parentNode;
+      }
+      return null;
+    }
+
+    const handlePointerOver = (event) => {
+      const card = findGalleryCardFromEvent(event);
       if (card) {
         cards.forEach(c => c.classList.remove("is-active"));
         card.classList.add("is-active");
       }
     };
 
-    const handleMouseLeave = (event) => {
-      const card = event.target.closest(".gallery-card");
-      if (card) {
+    const handlePointerOut = (event) => {
+      const cardLeft = findGalleryCardFromEvent(event);
+      if (cardLeft) {
         cards.forEach(c => c.classList.add("is-active"));
       }
     };
 
-    document.addEventListener("mouseenter", handleMouseEnter, true);
-    document.addEventListener("mouseleave", handleMouseLeave, true);
+    // Use pointerover/pointerout (they bubble) and scope to container
+    container.addEventListener('pointerover', handlePointerOver);
+    container.addEventListener('pointerout', handlePointerOut);
 
     return () => {
-      document.removeEventListener("mouseenter", handleMouseEnter, true);
-      document.removeEventListener("mouseleave", handleMouseLeave, true);
+      container.removeEventListener('pointerover', handlePointerOver);
+      container.removeEventListener('pointerout', handlePointerOut);
     };
   }, []);
+
+  // Section-wise scroll animation for desktop
+  useEffect(() => {
+    if (window.innerWidth < 768) return; // Only for desktop
+
+    const sections = [performancesRef, awardsRef, mentionsRef, galleryPageRef];
+    let isScrolling = false;
+
+    const scrollToSection = (index) => {
+      if (sections[index]?.current && !isScrolling) {
+        isScrolling = true;
+        setCurrentSection(index);
+        sections[index].current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Reset scrolling flag after animation
+        setTimeout(() => {
+          isScrolling = false;
+        }, 1000);
+      }
+    };
+
+    const handleWheel = (e) => {
+      if (isScrolling) return;
+      
+      e.preventDefault();
+      const delta = e.deltaY;
+      
+      if (delta > 0 && currentSection < sections.length - 1) {
+        // Scroll down
+        scrollToSection(currentSection + 1);
+      } else if (delta < 0 && currentSection > 0) {
+        // Scroll up
+        scrollToSection(currentSection - 1);
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (isScrolling) return;
+      
+      if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
+        e.preventDefault();
+        scrollToSection(currentSection + 1);
+      } else if (e.key === 'ArrowUp' && currentSection > 0) {
+        e.preventDefault();
+        scrollToSection(currentSection - 1);
+      }
+    };
+
+    // Add event listeners
+    document.addEventListener('wheel', handleWheel, { passive: false });
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('wheel', handleWheel);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentSection]);
 
   return (
     <div className="w-full">
       {/* Performances Section */}
-      <section style={{ background: '#EFDFBB', color: '#0C0C0C' }} className="py-20 mt-20">
+      <section ref={performancesRef} style={{ background: '#EFDFBB', color: '#0C0C0C' }} className="py-20 mt-20 min-h-screen">
         <div className="max-w-6xl mx-auto px-4">
           {/* Performances Header */}
           <div className="text-center mb-16 fade-in">
@@ -177,10 +266,10 @@ const About = () => {
       </section>
 
       {/* Awards Section */}
-      <section style={{ background: '#222', color: '#ECE7E2', position: 'relative', overflow: 'hidden' }} className="pt-20 py-20 md:min-h-screen">
+      <section ref={awardsRef} style={{ background: '#222', color: '#ECE7E2', position: 'relative', overflow: 'hidden' }} className="pt-20 py-20 min-h-screen">
         {/* Blurred background image */}
         <img
-          src="/awardpc.jpg"
+          src="/awards/awardpc.jpg"
           alt="Awards Background"
           style={{
             position: 'absolute',
@@ -197,12 +286,12 @@ const About = () => {
           }}
           className="absolute block"
         />
-        <div className="max-w-3xl mx-auto px-4 pt-32" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="text-center mb-12 fade-in mt-0">
+        <div className="max-w-3xl mx-auto px-4 pt-32 md:pt-16" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="text-center mb-12 fade-in mt-0 md:mt-[-2rem]">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 highlight" style={{ color: '#ECE7E2' }}>Awards</h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: '#ECE7E2' }}></div>
           </div>
-          <ul className="space-y-6 text-lg md:text-3xl mb-16" style={{ fontFamily: 'Lucida Calligraphy, Narziss, serif', fontStyle: 'italic', letterSpacing: '1px', fontWeight: 400, textAlign: 'center' }}>
+          <ul className="space-y-6 text-lg md:text-3xl mb-16 md:mt-36" style={{ fontFamily: 'Lucida Calligraphy, Narziss, serif', fontStyle: 'italic', letterSpacing: '1px', fontWeight: 400, textAlign: 'center' }}>
             {awards.map((item, idx) => (
               <li key={idx} className="fade-in" style={{ animationDelay: `${idx * 0.1}s`, color: '#ECE7E2', display: 'block' }}>
                 {item}
@@ -213,7 +302,7 @@ const About = () => {
       </section>
 
       {/* Mentions Section */}
-      <section style={{ background: '#EFDFBB', position: 'relative', overflow: 'visible', paddingBottom: '5rem' }} className="py-10"> 
+      <section ref={mentionsRef} style={{ background: '#EFDFBB', position: 'relative', overflow: 'visible', paddingBottom: '5rem' }} className="py-10 min-h-screen"> 
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-8 fade-in">
             <h3 className="text-4xl md:text-5xl font-bold mb-6 highlight" style={{ color: '#722F37' }}>Mentions</h3>
@@ -263,6 +352,7 @@ const About = () => {
 
       {/* Gallery Section */}
       <section
+        ref={galleryPageRef}
         className="w-full min-h-screen py-20 px-4"
         style={{ 
           backgroundColor: '#F5F5DC',
@@ -283,13 +373,14 @@ const About = () => {
           {/* Desktop Gallery Layout */}
           <div className="hidden md:block">
             <div 
+              ref={galleryRef}
               className="gallery-container flex max-w-full mx-auto overflow-auto items-start justify-center"
               style={{ padding: '0 3rem' }}
             >
               {galleryImages.map((image, index) => (
                 <div
                   key={index}
-                  className={`gallery-card flex-1 relative transition-all duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] opacity-20 hover:opacity-100 ${
+                  className={`gallery-card flex-1 relative transition-all duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] opacity-20 ${
                     index === 1 || index === 3 ? 'mt-[2.5%]' : 
                     index === 2 ? 'mt-[5%]' : 'mt-0'
                   }`}
@@ -308,7 +399,7 @@ const About = () => {
                         alt={image.alt}
                         className="absolute top-0 left-0 w-full h-full object-cover object-center"
                       />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 transform translate-y-full opacity-0 transition-all duration-300 hover:translate-y-0 hover:opacity-100">
+                      <div className="gallery-caption absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
                         <p className="text-white text-sm font-medium">{image.alt}</p>
                       </div>
                     </div>
@@ -359,6 +450,18 @@ const About = () => {
         </div>
       </section>
 
+      {/* Section Indicators for Desktop */}
+      <div className="hidden md:block section-indicator">
+        {['Performances', 'Awards', 'Mentions', 'Gallery'].map((section, index) => (
+          <div
+            key={section}
+            className={`section-dot ${currentSection === index ? 'active' : ''}`}
+            onClick={() => setCurrentSection(index)}
+            title={section}
+          />
+        ))}
+      </div>
+
       {/* Modal for expanded image */}
       {modalImg && (
         <div style={{
@@ -382,14 +485,60 @@ const About = () => {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         .gallery-card.is-active,
         .gallery-card:hover {
           opacity: 1 !important;
         }
-        
+
         .gallery-card:hover {
           flex-basis: 30% !important;
+        }
+
+        /* Caption animation */
+        .gallery-caption {
+          transform: translateY(100%);
+          opacity: 0;
+          transition: all 0.35s cubic-bezier(0.2, 0.9, 0.2, 1);
+        }
+        .gallery-card:hover .gallery-caption,
+        .gallery-card.is-active .gallery-caption {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        /* Section scroll animation styles */
+        @media (min-width: 768px) {
+          html {
+            scroll-behavior: smooth;
+          }
+          
+          section {
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+          }
+          
+          .section-indicator {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+          }
+          
+          .section-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+          
+          .section-dot.active {
+            background: #722F37;
+            transform: scale(1.2);
+          }
         }
       `}</style>
     </div>
